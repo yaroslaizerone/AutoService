@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2de68cbb9d56450388ab71c1101ec956" Name="Diagram1">
+        <EntityTypeShape EntityType="AutoserviceModel.Manufacture" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoserviceModel.Order" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoserviceModel.PickupPoint" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoserviceModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoserviceModel.ProductCategors" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoserviceModel.Role" Width="1.5" PointX="5.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoserviceModel.StatusOrders" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoserviceModel.Suppliers" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoserviceModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoserviceModel.Units" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoserviceModel.User" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="AutoserviceModel.FK_Product_Manufacture" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoserviceModel.FK_Order_PickupPoint" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoserviceModel.FK_Order_StatusOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoserviceModel.FK_Product_ProductCategors" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoserviceModel.FK_Product_Suppliers" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoserviceModel.FK_Product_Units" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoserviceModel.FK__User__UserRole__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoserviceModel.OrderProduct" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
