@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,6 +15,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,10 +39,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -47,6 +50,7 @@
     <Reference Include="System.Data.SqlClient, Version=4.6.1.5, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SqlClient.4.8.5\lib\net461\System.Data.SqlClient.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -67,7 +71,75 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Entities\AutoEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutoEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AutoEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\AutoEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutoEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Manufacture.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Order.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrderProduct.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PickupPoint.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Product.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ProductCategors.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Role.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\StatusOrders.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Suppliers.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sysdiagrams.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Units.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\User.cs">
+      <DependentUpon>AutoEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderTicketPage.xaml.cs">
+      <DependentUpon>OrderTicketPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\OrderWindow.xaml.cs">
+      <DependentUpon>OrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\OrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OrderTicketPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -75,56 +147,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AutoServiceEntities.cs" />
-    <Compile Include="Entities\AutoBase.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AutoBase.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\AutoBase.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\AutoBase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AutoBase.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Manufacture.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Order.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\PickupPoint.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Product.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\ProductCategors.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Role.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\StatusOrders.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Suppliers.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\sysdiagrams.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Units.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\User.cs">
-      <DependentUpon>AutoBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -133,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Client.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\OrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,12 +188,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Entities\AutoBase.edmx">
+    <EntityDeploy Include="Entities\AutoEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AutoBase.Designer.cs</LastGenOutput>
+      <LastGenOutput>AutoEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entities\AutoBase.edmx.diagram">
-      <DependentUpon>AutoBase.edmx</DependentUpon>
+    <None Include="Entities\AutoEntities.edmx.diagram">
+      <DependentUpon>AutoEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -178,16 +205,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Product\Battery.jpg" />
-    <Resource Include="Resources\Product\Puller.jpeg" />
-    <Resource Include="Resources\Product\Caps.jpg" />
-    <Resource Include="Resources\Product\Keys.jpeg" />
-    <Resource Include="Resources\Product\Screwdriver.jpeg" />
-    <Resource Include="Resources\Product\Mop.jpeg" />
-    <Resource Include="Resources\Product\Sweeper.jpg" />
-    <Resource Include="Resources\Product\Recharging1.jpeg" />
-    <Resource Include="Resources\Product\Multimet.jpg" />
-    <Resource Include="Resources\Product\Recharging2.jpeg" />
     <Resource Include="Resources\Image\icon.ico" />
     <Resource Include="Resources\Image\logo.png" />
   </ItemGroup>
@@ -195,16 +212,39 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities\AutoBase.Context.tt">
+    <None Include="Resources\logo.bmp" />
+    <Resource Include="Resources\Product\A782R4.jpg" />
+    <Resource Include="Resources\Product\D374E4.jpeg" />
+    <Resource Include="Resources\Product\K830R4.jpg" />
+    <Resource Include="Resources\Product\K849L6.jpeg" />
+    <Resource Include="Resources\Product\O393R4.jpeg" />
+    <Resource Include="Resources\Product\S037R9.jpeg" />
+    <Resource Include="Resources\Product\S983R4.jpg" />
+    <Resource Include="Resources\Product\Z374R3.jpeg" />
+    <Resource Include="Resources\Product\Z469T7.jpg" />
+    <Resource Include="Resources\Product\Z472R4.jpeg" />
+    <Resource Include="Resources\Product\Picture.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Entities\AutoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AutoBase.edmx</DependentUpon>
-      <LastGenOutput>AutoBase.Context.cs</LastGenOutput>
+      <LastGenOutput>AutoEntities.Context.cs</LastGenOutput>
+      <DependentUpon>AutoEntities.edmx</DependentUpon>
     </Content>
-    <Content Include="Entities\AutoBase.tt">
+    <Content Include="Entities\AutoEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AutoBase.edmx</DependentUpon>
-      <LastGenOutput>AutoBase.cs</LastGenOutput>
+      <DependentUpon>AutoEntities.edmx</DependentUpon>
+      <LastGenOutput>AutoEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

@@ -17,7 +17,7 @@ namespace AutoService.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.Order = new HashSet<Order>();
+            this.OrderProduct = new HashSet<OrderProduct>();
         }
     
         public string ProductArticleNumber { get; set; }
@@ -36,10 +36,10 @@ namespace AutoService.Entities
         public Nullable<int> MinCount { get; set; }
     
         public virtual Manufacture Manufacture { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderProduct> OrderProduct { get; set; }
         public virtual ProductCategors ProductCategors { get; set; }
         public virtual Suppliers Suppliers { get; set; }
         public virtual Units Units { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
     }
 }

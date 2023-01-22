@@ -4,11 +4,83 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AutoService.Pages"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Client">
+    <Page.Resources>
+        <sys:String x:Key="deafualtImage">
+            F:/ярослав/коды/AutoService/AutoService/Resources/Product/Picture.png
+        </sys:String>
+    </Page.Resources>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="80*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="56"/>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right">
+            <TextBlock Text="Пользователь: "/>
+            <TextBlock x:Name="textFullName"/>
+        </StackPanel>
+
+        <TextBox x:Name="textSearch" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5, 0, 5, 0" SelectionChanged = "textSearch_SelectionChanged"/>
+        <ComboBox Name="cmbSorting" Grid.Row="1" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Center" Margin="5, 0, 5, 0" ItemsSource="{Binding SortingList}" SelectionChanged ="cmbSorting_SelectionChanged"/>
+        <ComboBox Name="cmbFilter" Grid.Column="2" Grid.Row="1" SelectedIndex="0" VerticalAlignment="Center" Margin="5, 0, 5, 0" ItemsSource="{Binding FilterList}" SelectionChanged ="cmbFilter_SelectionChanged"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="textResultAmount"/>
+            <TextBlock Text="из"/>
+            <TextBlock x:Name="textAllAmount"/>
+        </StackPanel>
         
+        <ListView x:Name="LViewProduct" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="5, 5, 5, 5" d:ItemsSource="{d:SampleData ItemCount=1}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1" Background="{Binding Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Width="180" Height="100" Margin="5" Source="{Binding ImgPath, FallbackValue={StaticResource deafualtImage}}"/>
+
+                            <StackPanel Grid.Column="1" Margin="5">
+                                <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding ProductDescription}"/>
+                                <TextBlock Text="{Binding IDManufacture}"/>
+                                <!--нужен метод для вытаскивания названия компании--> 
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
+                                    <TextBlock Text="{Binding CostWithDuscount, StringFormat='\ {0} рублей'}"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <TextBlock Grid.Column="2" Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ContextMenu>
+                <ContextMenu Name="contextMenu">
+                    <MenuItem Name="btnAddProduct" Header="Добавить к заказу" Click="btnAddProduct_Click"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+        <Button x:Name="btnOrder" Grid.Row="3" Grid.Column="0" Content="Заказ" Visibility="Collapsed" HorizontalAlignment="Left" Width="200" Margin="20, 0, 0, 0" Click="btnOrder_Click"/>
     </Grid>
 </Page>

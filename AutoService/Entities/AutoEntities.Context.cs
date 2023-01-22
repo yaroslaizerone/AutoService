@@ -15,11 +15,19 @@ namespace AutoService.Entities
     
     public partial class AutoEntities : DbContext
     {
+        private static AutoEntities context;
         public AutoEntities()
             : base("name=AutoEntities")
         {
         }
     
+        public static AutoEntities GetContext()
+        {
+            if (context == null)
+                context= new AutoEntities();
+            return context;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -27,6 +35,7 @@ namespace AutoService.Entities
     
         public virtual DbSet<Manufacture> Manufacture { get; set; }
         public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderProduct> OrderProduct { get; set; }
         public virtual DbSet<PickupPoint> PickupPoint { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductCategors> ProductCategors { get; set; }

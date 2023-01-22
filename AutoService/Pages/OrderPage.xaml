@@ -1,0 +1,67 @@
+﻿<Page x:Class="AutoService.Pages.OrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoService.Pages" xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrderPage">
+    <Page.Resources>
+        <sys:String x:Key="defualtImage">
+            F:/ярослав/коды/AutoService/AutoService/Resources/Product/Picture.png
+        </sys:String>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="250"/>
+        </Grid.RowDefinitions>
+
+        <ListView x:Name="lViewOrder" d:ItemsSource = "{d:SampleData ItemCount=1}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Width="90" Height="100" Margin="5" Grid.Column="0"
+                                   Stretch="Uniform" Source="{Binding ImgPath, FallbackValue={StaticResource defualtImage}}"/>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding ProductDescription}"/>
+                                <TextBlock Text="{Binding IDManufacture}"/>
+                                <TextBlock Text="{Binding ProductCost}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}" Margin="0, 15, 0, 0"/>
+                                <Button x:Name="btnDeleteProduct" Content="X" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"
+                                        Margin="0, 15, 0, 0" Click="btnDeleteProduct_Click"/>
+                            </StackPanel>
+                            <TextBlock Grid.Column="2" Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Пункт выдачи"/>
+            <ComboBox Name="cmbPickupPouint" DisplayMemberPath="Address" SelectedValuePath="ID"/>
+            <TextBlock Text="Клиент:"/>
+            <TextBox x:Name="textUser"/>
+            <TextBlock Text="Итого:"/>
+            <TextBlock Text="{Binding Total, StringFormat='\ {0} рублей'}"/>
+            <Button x:Name="btnOrderSave" Grid.Row="1" HorizontalAlignment="Center" Content="Оформить заказ"
+                        Width="200" Click="btnOrderSave_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
