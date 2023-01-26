@@ -29,7 +29,7 @@ namespace AutoService.Pages
             productList = products; // Передача списка товаров в пустой лист
             lViewOrder.ItemsSource = productList; // Вывод товаров в ListView
 
-            cmbPickupPouint.ItemsSource = AutoEntities.GetContext().PickupPoint.ToList();//Ввод пунктов выдачи в список
+            cmbPickupPouint.ItemsSource = AutoserviceEntities.GetContext().PickupPoint.ToList();//Ввод пунктов выдачи в список
 
             if (user != null) // Проверка на наличие пользователя
                 textUser.Text = user.UserSurname.ToString() + " " + user.UserName.ToString() + " " + user.UserPatronymic.ToString();  
@@ -77,21 +77,19 @@ namespace AutoService.Pages
                     ReceiptCode =  random.Next(100, 1000),
                     ClientFullName = textUser.Text
                 };
-                AutoEntities.GetContext().Order.Add(newOrder); //Передаём добавленные данные в таблицу Order
-
-                int id = AutoEntities.GetContext().OrderProduct.ToList().Count();
+                AutoserviceEntities.GetContext().Order.Add(newOrder); //Передаём добавленные данные в таблицу Order
 
                 for(int i = 0; i < productArticle.Count(); i++)  // Счётчик, который будет добавлять записи до того как не закончатся артикулы
                 {
                     OrderProduct newOrderProduct = new OrderProduct()
                     {
-                        OrderProductID = id+1,
                         OrderID = newOrder.OrderID,
                         ProductArticleNumber = productArticle[i],
+                        CountProduct = 1
                     };
-                    AutoEntities.GetContext().OrderProduct.Add(newOrderProduct); //Передаём параметры доя созранения в базу
+                    AutoserviceEntities.GetContext().OrderProduct.Add(newOrderProduct); //Передаём параметры доя созранения в базу
                 }
-                AutoEntities.GetContext().SaveChanges();//Сохраняем записи в БД
+                AutoserviceEntities.GetContext().SaveChanges();//Сохраняем записи в БД
                 MessageBox.Show("Заказ Оформлен!","Информация", MessageBoxButton.OK,MessageBoxImage.Information);
                 NavigationService.Navigate(new OrderTicketPage(newOrder, productList)); //Переходим на страницу талона заказа
             }

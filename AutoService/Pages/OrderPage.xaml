@@ -30,24 +30,23 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="426"/>
                             </Grid.ColumnDefinitions>
-                            <Image Width="90" Height="100" Margin="5" Grid.Column="0"
+                            <Image Width="90" Height="100" Margin="15,9,15,9" Grid.Column="0"
                                    Stretch="Uniform" Source="{Binding ImgPath, FallbackValue={StaticResource defualtImage}}"/>
 
                             <StackPanel Grid.Column="1">
                                 <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding ProductDescription}"/>
-                                <TextBlock Text="{Binding IDManufacture}"/>
+                                <TextBlock Text="{Binding GetNameManufacture}"/>
                                 <TextBlock Text="{Binding ProductCost}"/>
                             </StackPanel>
-                            <StackPanel Grid.Column="2">
+                            <StackPanel Grid.Column="2" Margin="379,0,0,0">
                                 <TextBlock Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}" Margin="0, 15, 0, 0"/>
                                 <Button x:Name="btnDeleteProduct" Content="X" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"
                                         Margin="0, 15, 0, 0" Click="btnDeleteProduct_Click"/>
                             </StackPanel>
-                            <TextBlock Grid.Column="2" Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

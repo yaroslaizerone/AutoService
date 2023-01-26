@@ -26,11 +26,12 @@
         </EntityType>
         <EntityType Name="OrderProduct">
           <Key>
-            <PropertyRef Name="OrderProductID" />
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ProductArticleNumber" />
           </Key>
-          <Property Name="OrderProductID" Type="int" Nullable="false" />
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountProduct" Type="int" />
         </EntityType>
         <EntityType Name="PickupPoint">
           <Key>
@@ -303,11 +304,12 @@
         </EntityType>
         <EntityType Name="OrderProduct">
           <Key>
-            <PropertyRef Name="OrderProductID" />
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ProductArticleNumber" />
           </Key>
-          <Property Name="OrderProductID" Type="Int32" Nullable="false" />
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="ProductArticleNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountProduct" Type="Int32" />
           <NavigationProperty Name="Order" Relationship="Self.FK_OrderProduct_Order" FromRole="OrderProduct" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="Self.FK_OrderProduct_Product" FromRole="OrderProduct" ToRole="Product" />
         </EntityType>
@@ -514,7 +516,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AutoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AutoserviceEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Manufacture" EntityType="Self.Manufacture" />
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="OrderProduct" EntityType="Self.OrderProduct" />
@@ -569,7 +571,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище AutoserviceModelContainer" CdmEntityContainer="AutoEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AutoserviceModelContainer" CdmEntityContainer="AutoserviceEntities">
           <EntitySetMapping Name="Manufacture">
             <EntityTypeMapping TypeName="AutoserviceModel.Manufacture">
               <MappingFragment StoreEntitySet="Manufacture">
@@ -594,9 +596,9 @@
           <EntitySetMapping Name="OrderProduct">
             <EntityTypeMapping TypeName="AutoserviceModel.OrderProduct">
               <MappingFragment StoreEntitySet="OrderProduct">
-                <ScalarProperty Name="OrderProductID" ColumnName="OrderProductID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="ProductArticleNumber" ColumnName="ProductArticleNumber" />
+                <ScalarProperty Name="CountProduct" ColumnName="CountProduct" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

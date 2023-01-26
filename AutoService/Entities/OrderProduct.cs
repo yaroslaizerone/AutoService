@@ -14,9 +14,9 @@ namespace AutoService.Entities
     
     public partial class OrderProduct
     {
-        public int OrderProductID { get; set; }
         public int OrderID { get; set; }
         public string ProductArticleNumber { get; set; }
+        public Nullable<int> CountProduct { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }

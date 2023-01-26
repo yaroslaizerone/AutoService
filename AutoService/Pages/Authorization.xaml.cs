@@ -29,8 +29,8 @@ namespace AutoService.Pages
 
             User user = new User();//Создаём объект пользователя
 
-            user = AutoEntities.GetContext().User.Where(x => x.UserLogin == login && x.UserPassword == password).FirstOrDefault(); // Параметр, хранящий в себе данные найденного пользователя
-            int userСount = AutoEntities.GetContext().User.Where(x => x.UserLogin == login && x.UserPassword == password).Count(); // Поиск количества пользователей с данными параметрами
+            user = AutoserviceEntities.GetContext().User.Where(x => x.UserLogin == login && x.UserPassword == password).FirstOrDefault(); // Параметр, хранящий в себе данные найденного пользователя
+            int userСount = AutoserviceEntities.GetContext().User.Where(x => x.UserLogin == login && x.UserPassword == password).Count(); // Поиск количества пользователей с данными параметрами
             
             if (countUnsuccessful < 1) //Проверка, на схождение логина и пароля
             {
@@ -90,6 +90,12 @@ namespace AutoService.Pages
             {
                 case "Клиент":
                     NavigationService.Navigate(new Client(user));
+                    break;
+                case "Менеджер":
+                    NavigationService.Navigate(new Client(user));
+                    break;
+                case "Администратор":
+                    NavigationService.Navigate(new Admin(user));
                     break;
             }
         }

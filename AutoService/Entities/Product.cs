@@ -9,6 +9,7 @@
 
 namespace AutoService.Entities
 {
+    using AutoService.Properties;
     using System;
     using System.Collections.Generic;
     
@@ -41,5 +42,44 @@ namespace AutoService.Entities
         public virtual ProductCategors ProductCategors { get; set; }
         public virtual Suppliers Suppliers { get; set; }
         public virtual Units Units { get; set; }
+
+        public string Background
+        {
+            get 
+            {
+                if (this.ProductDiscountAmount > 15)
+                    return "#7fff00";
+                return "fff";
+            }
+        }
+
+        public string GetNameManufacture
+        { 
+            get
+            {
+                return this.Manufacture.Manufacture1.ToString();
+            }
+        }
+
+        public string CostWithDiscount
+        {
+            get
+            {
+                if(this.MaxDiscountAmount > 0)
+                {
+                    var costWithDiscount = Convert.ToDouble(this.ProductCost) - Convert.ToDouble(this.ProductCost) * Convert.ToDouble(this.ProductDiscountAmount / 100.00);
+                    return costWithDiscount.ToString();
+                }
+                return this.ProductCost.ToString();
+            }
+        }
+        public string ImgPath
+        {
+            get
+            {
+                var path = "F:/ярослав/коды/AutoService/AutoService/Resources/Product/" + this.ProductPhoto;
+                return path;
+            }
+        }
     }
 }

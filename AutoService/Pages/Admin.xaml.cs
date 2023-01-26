@@ -1,22 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using AutoService.Entities;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using AutoService.Entities;
-using AutoService.Windows;
-
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace AutoService.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Client.xaml
-    /// </summary>
-    public partial class Client : Page
+    public partial class Admin : Page
     {
-
-        User user = new User(); //Пустой параметр пользователя
-
-        public Client(User currentUser)
+        User user = new User();
+        public Admin(User currentUser)
         {
             InitializeComponent();
 
@@ -31,7 +34,6 @@ namespace AutoService.Pages
             UpdateData();
             Users();
         }
-
         private void Users()
         {
             if (user != null)
@@ -63,17 +65,21 @@ namespace AutoService.Pages
             if (cmbSorting.SelectedIndex == 2)
                 result = result.OrderByDescending(x => x.ProductCost).ToList();
 
-            if(cmbFilter.SelectedIndex == 1)//Реализация фильтрации
+            if (cmbFilter.SelectedIndex == 1)//Реализация фильтрации
                 result = result.Where(x => x.ProductDiscountAmount >= 0 && x.ProductDiscountAmount < 10).ToList();
             if (cmbFilter.SelectedIndex == 2)
                 result = result.Where(x => x.ProductDiscountAmount >= 10 && x.ProductDiscountAmount < 15).ToList();
-            if(cmbFilter.SelectedIndex == 3)
+            if (cmbFilter.SelectedIndex == 3)
                 result = result.Where(x => x.ProductDiscountAmount >= 15).ToList();
 
             result = result.Where(x => x.ProductName.ToLower().Contains(textSearch.Text.ToLower())).ToList();//Реализация поиска
-            LViewProduct.ItemsSource= result; //Передаём результат в ListView
+            LViewProduct.ItemsSource = result; //Передаём результат в ListView
 
             textResultAmount.Text = result.Count.ToString();//Передём количество записей после применения поиска, сортировки, фильтрации
+        }
+        private void textSearch_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            UpdateData();
         }
 
         private void cmbSorting_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -86,24 +92,33 @@ namespace AutoService.Pages
             UpdateData();
         }
 
-        private void textSearch_SelectionChanged(object sender, System.Windows.RoutedEventArgs e)
+        private void btnAddNewProduct_Click(object sender, RoutedEventArgs e)
         {
-            UpdateData();
+            NavigationService.Navigate(new AddEditProductPage(null)); // Если хотим добавить новый товар, то передаём пустое значение на следующую страницу
         }
 
-        List<Product> orderProducts = new List<Product>();
+        private void LViewProduct_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new AddEditProductPage(LViewProduct.SelectedItem as Product));// Если хотим перейти к редоктированию товара. то передаём на страницу данные об этом товаре
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(Visibility == Visibility.Visible)
+            {
+                AutoserviceEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                LViewProduct.ItemsSource = AutoserviceEntities.GetContext().Product.ToList();
+            }
+        }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            orderProducts.Add(LViewProduct.SelectedItem as Product);
-            if (orderProducts.Count > 0)
-                btnOrder.Visibility = Visibility.Visible;
+
         }
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            OrderWindow order = new OrderWindow(orderProducts, user);
-            order.ShowDialog();
+
         }
     }
 }

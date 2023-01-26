@@ -1,4 +1,4 @@
-﻿<Page x:Class="AutoService.Pages.Client"
+﻿<Page x:Class="AutoService.Pages.Admin"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,13 +7,12 @@
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Client">
+      Title="Admin" IsVisibleChanged="Page_IsVisibleChanged">
     <Page.Resources>
-        <sys:String x:Key="deafualtImage">
+        <sys:String x:Key="defaultImage">
             F:/ярослав/коды/AutoService/AutoService/Resources/Product/Picture.png
         </sys:String>
     </Page.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220*"/>
@@ -27,23 +26,20 @@
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right">
             <TextBlock Text="Пользователь: "/>
             <TextBlock x:Name="textFullName"/>
         </StackPanel>
 
-        <TextBox x:Name="textSearch" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5, 0, 5, 0" SelectionChanged = "textSearch_SelectionChanged"/>
-        <ComboBox Name="cmbSorting" Grid.Row="1" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Center" Margin="5, 0, 5, 0" ItemsSource="{Binding SortingList}" SelectionChanged ="cmbSorting_SelectionChanged"/>
-        <ComboBox Name="cmbFilter" Grid.Column="2" Grid.Row="1" SelectedIndex="0" VerticalAlignment="Center" Margin="5, 0, 5, 0" ItemsSource="{Binding FilterList}" SelectionChanged ="cmbFilter_SelectionChanged"/>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBox Name="textSearch" Grid.Row="1" Grid.Column="0" SelectionChanged="textSearch_SelectionChanged" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
+        <ComboBox Name="cmbSorting" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding SortingList}" SelectionChanged="cmbSorting_SelectionChanged" SelectedIndex="0" Margin="5, 0, 5, 0" VerticalAlignment="Center"/>
+        <ComboBox Name="cmbFilter" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding FilterList}" SelectionChanged="cmbFilter_SelectionChanged" SelectedIndex="0" Margin="5, 0, 5, 0 " VerticalAlignment="Center"/>
+        <StackPanel>
             <TextBlock x:Name="textResultAmount"/>
             <TextBlock Text="из"/>
             <TextBlock x:Name="textAllAmount"/>
         </StackPanel>
-        
-        <ListView x:Name="LViewProduct" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="5, 5, 5, 5" d:ItemsSource="{d:SampleData ItemCount=1}">
+        <ListView x:Name="LViewProduct" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="5, 5, 5, 5" d:ItemsSource="{d:SampleData ItemCount=1}" MouseDoubleClick="LViewProduct_MouseDoubleClick">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -58,13 +54,13 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
-                            <Image Width="180" Height="100" Margin="5" Source="{Binding ImgPath, FallbackValue={StaticResource deafualtImage}}"/>
+                            <Image Width="180" Height="100" Margin="5" Source="{Binding ImgPath, FallbackValue={StaticResource defaultImage}}"/>
 
                             <StackPanel Grid.Column="1" Margin="5">
                                 <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding ProductDescription}"/>
-                                <TextBlock Text="{Binding GetNameManufacture}"/>
-                                <!--нужен метод для вытаскивания названия компании--> 
+                                <TextBlock Text="{Binding IDManufacture}"/>
+                                <!--нужен метод для вытаскивания названия компании-->
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
                                     <TextBlock Text="{Binding CostWithDiscount, StringFormat='\ {0} рублей'}"/>
@@ -82,5 +78,6 @@
             </ListView.ContextMenu>
         </ListView>
         <Button x:Name="btnOrder" Grid.Row="3" Grid.Column="0" Content="Заказ" Visibility="Collapsed" HorizontalAlignment="Left" Width="200" Margin="20, 0, 0, 0" Click="btnOrder_Click"/>
+        <Button x:Name="btnAddNewProduct" Grid.Row="3" Grid.Column="1" Content="Добавить товар" Width="200" HorizontalAlignment="Left" Click="btnAddNewProduct_Click"/>
     </Grid>
 </Page>

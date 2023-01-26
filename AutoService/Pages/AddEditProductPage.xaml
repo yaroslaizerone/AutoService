@@ -1,0 +1,75 @@
+﻿<Page x:Class="AutoService.Pages.AddEditProductPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoService.Pages"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddEditProductPage">
+    <Page.Resources>
+        <sys:String x:Key="deafualtImage">
+            F:/ярослав/коды/AutoService/AutoService/Resources/Product/Picture.png
+        </sys:String>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column = "1">
+            <TextBlock Text="Артикул: "/>
+            <TextBox Name="textArticle" Text="{Binding ProductArticleNumber}"/>
+
+            <TextBlock Text="Наименование: "/>
+            <TextBox Name="textTitle" Text="{Binding ProductName}"/>
+            
+            <TextBlock Text="Категория: "/>
+            <ComboBox Name="cmbCategory" Text="{Binding IDProductCategory}"/>
+
+            <TextBlock Text="Количество на складе: "/>
+            <TextBox Name="textCountInStock" Text="{Binding ProductQuantityInStock}"/>
+
+            <TextBlock Text="Единица измерения: "/>
+            <TextBox Name="textUnit" Text="{Binding IDUnit}"/>
+
+            <TextBlock Text="Количество в упаковке: "/>
+            <TextBox Name="textCountInPack" Text="{Binding CountPack}"/>
+
+            <TextBlock Text="Минимальное количество: "/>
+            <TextBox Name="textMinCount" Text="{Binding MinCount}"/>
+
+            <TextBlock Text="Поставщик: "/>
+            <TextBox Name="textSupplier" Text="{Binding IDSupplier}"/>
+
+            <TextBlock Text="Размер максимальной скидки: "/>
+            <TextBox Name="textMaxDiscount" Text="{Binding MaxDiscountAmount}"/>
+
+            <TextBlock Text="Размер Действующей скидки: "/>
+            <TextBox Name="textDiscount" Text="{Binding ProductDiscountAmount}"/>
+
+            <TextBlock Text="Стоимоть за единицу: "/>
+            <TextBox Name="textCost" Text="{Binding ProductCost}"/>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <Image x:Name="IMG" Width="100" Height="100" Source="{Binding ImgPath, FallbackValue={StaticResource deafualtImage}}"/>
+                    <Button Name="btnEnterImage" Content="Выбрать фото" Click="btnEnterImage_Click"/>
+                </StackPanel>
+
+                <StackPanel Margin="50 0 0 0">
+                    <TextBlock Text="Описание:"/>
+                    <TextBox Name="textDescription" Text="{Binding ProductDescription}" Height="100" Width="300" TextWrapping="Wrap"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Name="btnDeleteProduct" Content="Удалить материал" Width="200" Visibility="Collapsed" Click="btnDeleteProduct_Click"/>
+                <Button Name="btnSaveProduct" Content="Сохранить" Width="200" Click="btnSaveProduct_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
