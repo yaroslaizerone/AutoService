@@ -21,7 +21,7 @@ namespace AutoService.Entities
         }
     
         public int IDManufacture { get; set; }
-        public string Manufacture1 { get; set; }
+        public string ManufactureName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }

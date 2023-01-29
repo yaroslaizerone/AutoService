@@ -10,7 +10,7 @@
             <PropertyRef Name="IDManufacture" />
           </Key>
           <Property Name="IDManufacture" Type="int" Nullable="false" />
-          <Property Name="Manufacture" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ManufactureName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -35,9 +35,9 @@
         </EntityType>
         <EntityType Name="PickupPoint">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDPickupPoint" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="IDPickupPoint" Type="int" Nullable="false" />
           <Property Name="Addres" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
@@ -133,7 +133,7 @@
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PickupPoint">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="IDPickupPoint" />
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="OrderPickupPoint" />
@@ -284,7 +284,7 @@
             <PropertyRef Name="IDManufacture" />
           </Key>
           <Property Name="IDManufacture" Type="Int32" Nullable="false" />
-          <Property Name="Manufacture1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ManufactureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_Manufacture" FromRole="Manufacture" ToRole="Product" />
         </EntityType>
         <EntityType Name="Order">
@@ -315,9 +315,9 @@
         </EntityType>
         <EntityType Name="PickupPoint">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="IDPickupPoint" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="IDPickupPoint" Type="Int32" Nullable="false" />
           <Property Name="Addres" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_PickupPoint" FromRole="PickupPoint" ToRole="Order" />
         </EntityType>
@@ -425,7 +425,7 @@
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PickupPoint">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="IDPickupPoint" />
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="OrderPickupPoint" />
@@ -516,7 +516,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AutoserviceEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AutoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Manufacture" EntityType="Self.Manufacture" />
           <EntitySet Name="Order" EntityType="Self.Order" />
           <EntitySet Name="OrderProduct" EntityType="Self.OrderProduct" />
@@ -571,12 +571,12 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище AutoserviceModelContainer" CdmEntityContainer="AutoserviceEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AutoserviceModelContainer" CdmEntityContainer="AutoEntities">
           <EntitySetMapping Name="Manufacture">
             <EntityTypeMapping TypeName="AutoserviceModel.Manufacture">
               <MappingFragment StoreEntitySet="Manufacture">
                 <ScalarProperty Name="IDManufacture" ColumnName="IDManufacture" />
-                <ScalarProperty Name="Manufacture1" ColumnName="Manufacture" />
+                <ScalarProperty Name="ManufactureName" ColumnName="ManufactureName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -605,7 +605,7 @@
           <EntitySetMapping Name="PickupPoint">
             <EntityTypeMapping TypeName="AutoserviceModel.PickupPoint">
               <MappingFragment StoreEntitySet="PickupPoint">
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDPickupPoint" ColumnName="IDPickupPoint" />
                 <ScalarProperty Name="Addres" ColumnName="Addres" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AutoService.Pages" xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1000"
       Title="OrderPage">
     <Page.Resources>
         <sys:String x:Key="defualtImage">
@@ -25,7 +25,7 @@
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate> <!--Наименования в шаблоне не существуют для кода, так как как код должен понять с каким ему елементом взаимодействовать если их может нарисоваться неограниченное множество-->
                     <Border BorderBrush="Black" BorderThickness="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -35,17 +35,27 @@
                             </Grid.ColumnDefinitions>
                             <Image Width="90" Height="100" Margin="15,9,15,9" Grid.Column="0"
                                    Stretch="Uniform" Source="{Binding ImgPath, FallbackValue={StaticResource defualtImage}}"/>
-
+                            
                             <StackPanel Grid.Column="1">
                                 <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding ProductDescription}"/>
                                 <TextBlock Text="{Binding GetNameManufacture}"/>
-                                <TextBlock Text="{Binding ProductCost}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ProductCost }" TextDecorations="Strikethrough"/>
+                                    <TextBlock Text="{Binding CostWithDiscount, StringFormat='\ {0} рублей'}"/>
+                                </StackPanel>
                             </StackPanel>
-                            <StackPanel Grid.Column="2" Margin="379,0,0,0">
-                                <TextBlock Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}" Margin="0, 15, 0, 0"/>
+                            <StackPanel Grid.Column="2" Margin="265,0,0,0">
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="Скидка - "/>
+                                    <TextBlock Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}"/>
+                                </StackPanel>
                                 <Button x:Name="btnDeleteProduct" Content="X" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"
-                                        Margin="0, 15, 0, 0" Click="btnDeleteProduct_Click"/>
+                                         Click="btnDeleteProduct_Click" Width="36" Height="36"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                                    <TextBlock Text="Количество:" VerticalAlignment="Center"/>
+                                    <TextBox Name="TextCountProduct" Text="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Width="50" Height="34"/>
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -54,11 +64,11 @@
         </ListView>
         <StackPanel Grid.Row="1">
             <TextBlock Text="Пункт выдачи"/>
-            <ComboBox Name="cmbPickupPouint" DisplayMemberPath="Address" SelectedValuePath="ID"/>
+            <ComboBox Name="cmbPickupPouint" DisplayMemberPath="Addres" SelectedValuePath="IDPickupPoint"/>
             <TextBlock Text="Клиент:"/>
             <TextBox x:Name="textUser"/>
             <TextBlock Text="Итого:"/>
-            <TextBlock Text="{Binding Total, StringFormat='\ {0} рублей'}"/>
+            <TextBlock Name="ResultCost" Text="{Binding Total, StringFormat=' \ {0} рублей'}"/>
             <Button x:Name="btnOrderSave" Grid.Row="1" HorizontalAlignment="Center" Content="Оформить заказ"
                         Width="200" Click="btnOrderSave_Click"/>
         </StackPanel>

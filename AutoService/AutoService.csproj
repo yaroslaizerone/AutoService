@@ -71,56 +71,56 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Entities\AutoEntities.Context.cs">
+    <Compile Include="Entities\CarEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AutoEntities.Context.tt</DependentUpon>
+      <DependentUpon>CarEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\AutoEntities.cs">
+    <Compile Include="Entities\CarEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\AutoEntities.Designer.cs">
+    <Compile Include="Entities\CarEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AutoEntities.edmx</DependentUpon>
+      <DependentUpon>CarEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entities\Manufacture.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Order.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\OrderProduct.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\PickupPoint.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Product.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ProductCategors.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Role.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\StatusOrders.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Suppliers.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\sysdiagrams.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Units.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\User.cs">
-      <DependentUpon>AutoEntities.tt</DependentUpon>
+      <DependentUpon>CarEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AddEditProductPage.xaml.cs">
       <DependentUpon>AddEditProductPage.xaml</DependentUpon>
@@ -202,12 +202,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Entities\AutoEntities.edmx">
+    <EntityDeploy Include="Entities\CarEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AutoEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>CarEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entities\AutoEntities.edmx.diagram">
-      <DependentUpon>AutoEntities.edmx</DependentUpon>
+    <None Include="Entities\CarEntities.edmx.diagram">
+      <DependentUpon>CarEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -240,15 +240,15 @@
     <Resource Include="Resources\Product\Picture.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities\AutoEntities.Context.tt">
+    <Content Include="Entities\CarEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AutoEntities.edmx</DependentUpon>
-      <LastGenOutput>AutoEntities.Context.cs</LastGenOutput>
+      <DependentUpon>CarEntities.edmx</DependentUpon>
+      <LastGenOutput>CarEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Entities\AutoEntities.tt">
+    <Content Include="Entities\CarEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AutoEntities.edmx</DependentUpon>
-      <LastGenOutput>AutoEntities.cs</LastGenOutput>
+      <DependentUpon>CarEntities.edmx</DependentUpon>
+      <LastGenOutput>CarEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

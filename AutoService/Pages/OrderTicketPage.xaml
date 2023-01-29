@@ -29,9 +29,6 @@
 
                         <TextBlock Text="Сумма заказа: "/>
                         <TextBlock x:Name="textCost"/>
-                        
-                        <TextBlock Text="Сумма скидки: "/>
-                        <TextBlock x:Name="textDiscountSum"/>
 
                         <TextBlock Text="Пункт выдачи: "/>
                         <TextBlock x:Name="textPickupPoint"/>

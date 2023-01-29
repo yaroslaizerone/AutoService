@@ -10,24 +10,24 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="#ff498c51"/>
             <Setter Property="Margin" Value="5"/>
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontFamily" Value="Choplin"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
         <!--Слиль TextBlock-->
         <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontFamily" Value="Choplin"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
         <!--Слиль TextBox-->
         <Style TargetType="TextBox">
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontFamily" Value="Choplin"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
         <!--Слиль ComboBox-->
         <Style TargetType="ComboBox">
-            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontFamily" Value="Choplin"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Margin" Value="5"/>
         </Style>

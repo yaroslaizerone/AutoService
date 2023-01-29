@@ -1,18 +1,9 @@
 ﻿using AutoService.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoService.Pages
 {
@@ -23,7 +14,7 @@ namespace AutoService.Pages
         {
             InitializeComponent();
 
-            var product = AutoserviceEntities.GetContext().Product.ToList(); // Обращаемся к таблице с товарами и получаем список
+            var product = AutoEntities.GetContext().Product.ToList(); // Обращаемся к таблице с товарами и получаем список
             LViewProduct.ItemsSource = product; // Передаём список в лист
             DataContext = this; //Используем данный класс как объект для привязки контекста
 
@@ -58,7 +49,7 @@ namespace AutoService.Pages
 
         private void UpdateData()
         {
-            var result = AutoserviceEntities.GetContext().Product.ToList(); //Принимаем данные из таблицы product в переменную
+            var result = AutoEntities.GetContext().Product.ToList(); //Принимаем данные из таблицы product в переменную
 
             if (cmbSorting.SelectedIndex == 1)// Реализация сортировки 
                 result = result.OrderBy(x => x.ProductCost).ToList();
@@ -104,10 +95,10 @@ namespace AutoService.Pages
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if(Visibility == Visibility.Visible)
+            if (Visibility == Visibility.Visible)
             {
-                AutoserviceEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
-                LViewProduct.ItemsSource = AutoserviceEntities.GetContext().Product.ToList();
+                AutoEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+                LViewProduct.ItemsSource = AutoEntities.GetContext().Product.ToList();
             }
         }
 

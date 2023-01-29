@@ -9,13 +9,18 @@
       Title="Authorization">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="294*"/>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="115*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="260"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="260"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,102,0,0" Grid.RowSpan="3" Height="246" Width="260">
             <TextBlock Text="Логин:"/>
             <TextBox x:Name="textLogin" TextWrapping="Wrap"  Grid.Column="1"  Grid.Row="3" FontSize="18" Grid.ColumnSpan="4" BorderThickness="0,0,0,2" Grid.RowSpan="2">
                 <TextBox.Style>
@@ -99,6 +104,7 @@
                 <Button x:Name="btnEnter" Margin="5,15,5,5" Content="Войти" Click="btnEnter_Click"/>
             </StackPanel>
         </StackPanel>
-        
+        <TextBlock x:Name="tblTime" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="14" Foreground="Red" FontWeight="Bold" Height="25" Width="107" Margin="163,10,0,0"/>
+        <TextBlock x:Name="tblPredup" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Margin="74,10,0,0" TextWrapping="Wrap" Text="Подождите:" VerticalAlignment="Top" Width="90" FontSize="14" Foreground="Red" FontWeight="Bold"  Height="20" Visibility="Hidden"/>
     </Grid>
 </Page>

@@ -13,20 +13,22 @@ namespace AutoService.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AutoserviceEntities : DbContext
+    public partial class AutoEntities : DbContext
     {
-        private static AutoserviceEntities context;
-        public AutoserviceEntities()
-            : base("name=AutoserviceEntities")
+        public AutoEntities()
+            : base("name=AutoEntities")
         {
         }
-    
-        public static AutoserviceEntities GetContext()
+
+        private static AutoEntities context;
+
+        public static AutoEntities GetContext()
         {
             if (context == null)
-                context= new AutoserviceEntities();
+                context = new AutoEntities();
             return context;
         }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

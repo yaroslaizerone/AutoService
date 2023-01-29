@@ -18,7 +18,7 @@ namespace AutoService
 
         private void frmMain_ContentRendered(object sender, System.EventArgs e)
         {
-            if(frmMain.CanGoBack)
+            if (frmMain.CanGoBack)
             {
                 btnBack.Visibility = Visibility.Visible;
             }

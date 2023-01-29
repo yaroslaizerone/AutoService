@@ -42,7 +42,7 @@
             <TextBlock Text="из"/>
             <TextBlock x:Name="textAllAmount"/>
         </StackPanel>
-        
+
         <ListView x:Name="LViewProduct" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="5, 5, 5, 5" d:ItemsSource="{d:SampleData ItemCount=1}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -55,22 +55,26 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="120"/>
                             </Grid.ColumnDefinitions>
-                            <Image Width="180" Height="100" Margin="5" Source="{Binding ImgPath, FallbackValue={StaticResource deafualtImage}}"/>
+                            <Image Width="180" Height="100" Margin="10,14,10,14" Source="{Binding ImgPath, FallbackValue={StaticResource deafualtImage}}"/>
 
-                            <StackPanel Grid.Column="1" Margin="5">
+                            <StackPanel Grid.Column="1" Margin="5,5,5,5">
                                 <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding ProductDescription}"/>
                                 <TextBlock Text="{Binding GetNameManufacture}"/>
-                                <!--нужен метод для вытаскивания названия компании--> 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
                                     <TextBlock Text="{Binding CostWithDiscount, StringFormat='\ {0} рублей'}"/>
                                 </StackPanel>
                             </StackPanel>
-                            <TextBlock Grid.Column="2" Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Скидка - " VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </StackPanel>
                         </Grid>
                     </Border>
                 </DataTemplate>
