@@ -10,7 +10,7 @@
       Title="AddEditProductPage">
     <Page.Resources>
         <sys:String x:Key="deafualtImage">
-            F:/ярослав/коды/AutoService/AutoService/Resources/Product/Picture.png
+            pack://application:,,,/Resources/Product/picture.png
         </sys:String>
     </Page.Resources>
     <Grid>
@@ -67,7 +67,7 @@
             </StackPanel>
             
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Name="btnDeleteProduct" Content="Удалить материал" Width="200" Visibility="Collapsed" Click="btnDeleteProduct_Click"/>
+                <Button Name="btnDeleteProduct" Content="Удалить материал" Width="200" Click="btnDeleteProduct_Click"/>
                 <Button Name="btnSaveProduct" Content="Сохранить" Width="200" Click="btnSaveProduct_Click"/>
             </StackPanel>
         </StackPanel>

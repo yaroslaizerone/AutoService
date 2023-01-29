@@ -10,7 +10,7 @@
       Title="Admin" IsVisibleChanged="Page_IsVisibleChanged">
     <Page.Resources>
         <sys:String x:Key="defaultImage">
-            F:/ярослав/коды/AutoService/AutoService/Resources/Product/Picture.png
+            pack://application:,,,/Resources/Product/picture.png
         </sys:String>
     </Page.Resources>
     <Grid>
@@ -34,7 +34,7 @@
         <TextBox Name="textSearch" Grid.Row="1" Grid.Column="0" SelectionChanged="textSearch_SelectionChanged" VerticalAlignment="Center" Margin="5, 0, 5, 0"/>
         <ComboBox Name="cmbSorting" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding SortingList}" SelectionChanged="cmbSorting_SelectionChanged" SelectedIndex="0" Margin="5, 0, 5, 0" VerticalAlignment="Center"/>
         <ComboBox Name="cmbFilter" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding FilterList}" SelectionChanged="cmbFilter_SelectionChanged" SelectedIndex="0" Margin="5, 0, 5, 0 " VerticalAlignment="Center"/>
-        <StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock x:Name="textResultAmount"/>
             <TextBlock Text="из"/>
             <TextBlock x:Name="textAllAmount"/>
@@ -59,7 +59,7 @@
                             <StackPanel Grid.Column="1" Margin="5">
                                 <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding ProductDescription}"/>
-                                <TextBlock Text="{Binding IDManufacture}"/>
+                                <TextBlock Text="{Binding GetNameManufacture}"/>
                                 <!--нужен метод для вытаскивания названия компании-->
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
@@ -71,13 +71,8 @@
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            <ListView.ContextMenu>
-                <ContextMenu Name="contextMenu">
-                    <MenuItem Name="btnAddProduct" Header="Добавить к заказу" Click="btnAddProduct_Click"/>
-                </ContextMenu>
-            </ListView.ContextMenu>
         </ListView>
-        <Button x:Name="btnOrder" Grid.Row="3" Grid.Column="0" Content="Заказ" Visibility="Collapsed" HorizontalAlignment="Left" Width="200" Margin="20, 0, 0, 0" Click="btnOrder_Click"/>
+        <Button x:Name="btnOrder"  Content="Заказ" HorizontalAlignment="Center" Width="200" Margin="0,10,0,10" Click="btnOrder_Click" Grid.Row="3"/>
         <Button x:Name="btnAddNewProduct" Grid.Row="3" Grid.Column="1" Content="Добавить товар" Width="200" HorizontalAlignment="Left" Click="btnAddNewProduct_Click"/>
     </Grid>
 </Page>

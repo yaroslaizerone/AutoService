@@ -9,7 +9,7 @@
       Title="OrderPage">
     <Page.Resources>
         <sys:String x:Key="defualtImage">
-            F:/ярослав/коды/AutoService/AutoService/Resources/Product/Picture.png
+            pack://application:,,,/Resources/Product/picture.png
         </sys:String>
     </Page.Resources>
     <Grid>

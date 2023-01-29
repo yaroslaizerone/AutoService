@@ -88,9 +88,9 @@ namespace AutoService.Pages
                     };
                     AutoEntities.GetContext().OrderProduct.Add(newOrderProduct); //Передаём параметры для созранения в базу
                 }
-                //AutoEntities.GetContext().SaveChanges();//Сохраняем записи в БД
+                AutoEntities.GetContext().SaveChanges();//Сохраняем записи в БД
                 MessageBox.Show("Заказ Оформлен!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-                /*NavigationService.Navigate(new OrderTicketPage(newOrder, productList));*/ //Переходим на страницу талона заказа
+                NavigationService.Navigate(new OrderTicketPage(newOrder, productList)); //Переходим на страницу талона заказа
             }
             catch (Exception ex)
             {

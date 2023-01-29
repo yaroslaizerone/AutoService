@@ -10,7 +10,7 @@
       Title="Client">
     <Page.Resources>
         <sys:String x:Key="deafualtImage">
-            F:/ярослав/коды/AutoService/AutoService/Resources/Product/Picture.png
+            pack://application:,,,/Resources/Product/picture.png
         </sys:String>
     </Page.Resources>
 
