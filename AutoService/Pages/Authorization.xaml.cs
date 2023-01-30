@@ -53,9 +53,8 @@ namespace AutoService.Pages
             }
             else
             {
-                DelLoginAndPassword();
                 GenerataCapcha();
-                userСount = 0;
+                DelLoginAndPassword();
                 MessageBox.Show("Пароль или логин был неверно введён!");
             }
         }
@@ -89,30 +88,30 @@ namespace AutoService.Pages
         private void DelLoginAndPassword()
         {
             textLogin.Text = "";
-            textPassword.Text = "";
-            textCaptch.Text = "";
+            textPassword.Text = ""; 
         }
 
-        private void GenerataCapcha()
+        private void GenerataCapcha() //Генерация капчи
         {
             textCaptch.Visibility = Visibility.Visible;
             textBlockCaptcha.Visibility = Visibility.Visible;
 
-            Random random = new Random();
-            int randomNum = random.Next(0, 3);
-            // Каждому числу присвоено своё значение капчи
-            switch (randomNum)
+            String allowchar = "";
+            allowchar = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
+            allowchar += "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,y,z";
+            allowchar += "1,2,3,4,5,6,7,8,9,0";
+            char[] a = { ',' };
+            String[] ar = allowchar.Split(a);
+            String pwd = "";
+            string temp = "";
+            Random r = new Random();
+
+            for (int i = 0; i < 8; i++)
             {
-                case 1:
-                    textBlockCaptcha.Text = "ju2sT8Cbs";
-                    break;
-                case 2:
-                    textBlockCaptcha.Text = "iNuK2cl";
-                    break;
-                case 3:
-                    textBlockCaptcha.Text = "uOozGk95";
-                    break;
+                temp = ar[(r.Next(0, ar.Length))];
+                pwd += temp;
             }
+            textBlockCaptcha.Text = pwd;
         }
 
         private void LoadForm(string _role, User user)

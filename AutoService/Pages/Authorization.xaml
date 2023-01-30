@@ -5,21 +5,28 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AutoService.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="300" d:DesignWidth="600"
       Title="Authorization">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="67*"/>
-            <RowDefinition Height="23*"/>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="91*"/>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="35*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="143"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="127"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,102,0,0" Grid.RowSpan="2" Height="246" Width="260">
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Height="246" Width="260" Grid.Row="1" Grid.RowSpan="8" Margin="0,6,0,0">
             <TextBlock Text="Логин:"/>
             <TextBox x:Name="textLogin" TextWrapping="Wrap"  Grid.Column="1"  Grid.Row="3" FontSize="18" Grid.ColumnSpan="4" BorderThickness="0,0,0,2" Grid.RowSpan="2">
                 <TextBox.Style>
@@ -71,9 +78,34 @@
                 </TextBox.Style>
             </TextBox>
             <TextBlock Name="textBlockCaptcha"
-                       TextDecorations="Strikethrough"
-                       HorizontalAlignment="Center"/>
-            <TextBox x:Name="textCaptch" TextWrapping="Wrap"  Grid.Column="1"  Grid.Row="3" FontSize="18" Grid.ColumnSpan="4" BorderThickness="0,0,0,2" Grid.RowSpan="2">
+                       TextDecorations="Underline"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="24"
+                       FontWeight = "Bold"
+                       Height="24" Width="260"
+                       Visibility="Hidden"
+                       TextAlignment="Center">
+                <TextBlock.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="Blue" Offset="0.1"/>
+                        <GradientStop Color="Orange" Offset="0.25"/>
+                        <GradientStop Color="Green" Offset="0.75"/>
+                        <GradientStop Color="#FFF10E0E" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Background>
+                    <Run.Foreground>
+                        <LinearGradientBrush>
+                            <GradientStop Color="Green" Offset="0.0" />
+                            <GradientStop Color="Purple" Offset="0.25" />
+                            <GradientStop Color="Orange" Offset="0.5" />
+                            <GradientStop Color="Blue" Offset="0.75" />
+                        </LinearGradientBrush>
+                    </Run.Foreground>
+            </TextBlock>
+            <TextBox x:Name="textCaptch" TextWrapping="Wrap"  Grid.Column="1"  Grid.Row="3" FontSize="18" 
+                     Grid.ColumnSpan="4" BorderThickness="0,0,0,2" Grid.RowSpan="2"
+                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <Style.Resources>
@@ -97,13 +129,12 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
-
-            <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center">
-                <Button x:Name="btnEnterGuest" Margin="5,15,5,5" Content="Войти как гость" Click="btnEnterGuest_Click"/>
-                <Button x:Name="btnEnter" Margin="5,15,5,5" Content="Войти" Click="btnEnter_Click"/>
+            <StackPanel Orientation="Horizontal" Height="54" Grid.Row="4">
+                <Button x:Name="btnEnterGuest" Content="Войти как гость" Click="btnEnterGuest_Click" Height="39"/>
+                <Button x:Name="btnEnter" Content="Войти" Click="btnEnter_Click" Height="39"/>
             </StackPanel>
         </StackPanel>
-        <TextBlock x:Name="tblTime" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="14" Foreground="Red" FontWeight="Bold" Height="25" Width="107" Margin="163,10,0,0"/>
-        <TextBlock x:Name="tblPredup" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="74,10,0,0" TextWrapping="Wrap" Text="Подождите:" VerticalAlignment="Top" Width="90" FontSize="14" Foreground="Red" FontWeight="Bold"  Height="20" Visibility="Hidden"/>
+        <TextBlock x:Name="tblTime" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" FontSize="14" Foreground="Red" FontWeight="Bold" Height="16" Width="125" Margin="157,12,0,0"/>
+        <TextBlock x:Name="tblPredup" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" Margin="71,10,0,0" TextWrapping="Wrap" Text="Подождите:" VerticalAlignment="Top" Width="86" FontSize="14" Foreground="Red" FontWeight="Bold"  Height="20" Visibility="Hidden"/>
     </Grid>
 </Page>
