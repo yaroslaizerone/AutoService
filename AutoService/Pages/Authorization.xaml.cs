@@ -88,7 +88,8 @@ namespace AutoService.Pages
         private void DelLoginAndPassword()
         {
             textLogin.Text = "";
-            textPassword.Text = ""; 
+            textPassword.Text = "";
+            textCaptch.Text = "";
         }
 
         private void GenerataCapcha() //Генерация капчи
