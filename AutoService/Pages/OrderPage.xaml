@@ -41,7 +41,7 @@
                                 <TextBlock Text="{Binding ProductDescription}"/>
                                 <TextBlock Text="{Binding GetNameManufacture}"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding ProductCost }" TextDecorations="Strikethrough"/>
+                                    <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
                                     <TextBlock Text="{Binding CostWithDiscount, StringFormat='\ {0} рублей'}"/>
                                 </StackPanel>
                             </StackPanel>

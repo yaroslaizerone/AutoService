@@ -68,6 +68,7 @@
                                     <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
                                     <TextBlock Text="{Binding CostWithDiscount, StringFormat='\ {0} рублей'}"/>
                                 </StackPanel>
+                                <TextBlock Text="{Binding ProductQuantityInStock, StringFormat= '\В наличии: {0}'}"/>
                             </StackPanel>
                             <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal">
@@ -86,5 +87,6 @@
             </ListView.ContextMenu>
         </ListView>
         <Button x:Name="btnOrder" Grid.Row="3" Grid.Column="0" Content="Заказ" Visibility="Collapsed" HorizontalAlignment="Left" Width="200" Margin="20, 0, 0, 0" Click="btnOrder_Click"/>
+        <Button Name="btnUpdateOrder" Grid.Row="3" Grid.Column="1" Content="Редактирование заказов"  HorizontalAlignment="Left" Width="200" Margin="20, 0, 0, 0" Visibility="Collapsed" Click="btnUpdateOrder_Click"/>
     </Grid>
 </Page>

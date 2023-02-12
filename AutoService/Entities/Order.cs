@@ -32,5 +32,32 @@ namespace AutoService.Entities
         public virtual StatusOrders StatusOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderProduct> OrderProduct { get; set; }
+
+        public string AdressPickPoint
+        {
+            get
+            {
+               return this.PickupPoint.Addres.ToString();
+            }
+        }
+
+        public string StatusOrder
+        {
+            get
+            {
+                return this.StatusOrders.StatusOrder.ToString();
+            }
+        }
+
+        public string NameCustomer
+        {
+            get
+            {
+                if (ClientFullName.ToString() == "")
+                    return "Имя заказчика не узаканно";
+                else
+                    return ClientFullName.ToString();
+            }
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace AutoService.Pages
                 return total.ToString();
             }
         }
-
+        
         private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
         {//TODO Исправить удаление товара из заказа
             if (MessageBox.Show("Вы уверены, что хотите удалить этот элемент?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
@@ -45,6 +45,7 @@ namespace AutoService.Pages
                 }
                 lViewOrder.ItemsSource = null;
                 lViewOrder.ItemsSource = productList;
+                textUser.Text = "";
                 ResultCost.Text = $" {Total.ToString()} рублей";
             }
         }

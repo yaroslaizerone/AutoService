@@ -26,6 +26,9 @@ namespace AutoService.Pages
 
             textAllAmount.Text = product.Count.ToString(); //Передаём количество всех записей из таблицы
             user = currentUser; // передача значения в пустой объект
+            if(user != null)
+                if(user.UserRole == 2)
+                    btnUpdateOrder.Visibility= Visibility.Visible;
 
             UpdateData();
             Users();
@@ -108,6 +111,11 @@ namespace AutoService.Pages
         {
             OrderWindow order = new OrderWindow(Products, user);
             order.ShowDialog();
+        }
+
+        private void btnUpdateOrder_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SelectOrderForEdit());
         }
     }
 }

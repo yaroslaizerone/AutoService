@@ -60,7 +60,6 @@
                                 <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding ProductDescription}"/>
                                 <TextBlock Text="{Binding GetNameManufacture}"/>
-                                <!--нужен метод для вытаскивания названия компании-->
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
                                     <TextBlock Text="{Binding CostWithDiscount, StringFormat='\ {0} рублей'}"/>

@@ -42,13 +42,19 @@ namespace AutoService.Entities
         public virtual Suppliers Suppliers { get; set; }
         public virtual Units Units { get; set; }
 
+        public class OrderedProduct : Product
+        {
+            public int CountProduct { get; set; }
+        }
+        
         public string Background
         {
             get
             {
                 if (this.ProductDiscountAmount > 15)
                     return "#7fff00";
-                return "#fff";
+                else
+                    return "#fff";
             }
         }
 

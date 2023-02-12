@@ -20,5 +20,15 @@ namespace AutoService.Entities
     
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
+
+        public string ProductForList
+        {
+            get
+            {
+                return $"{this.Product.ProductName.ToString()} {CountProduct.ToString()}";
+            }
+        }
     }
+
+    
 }

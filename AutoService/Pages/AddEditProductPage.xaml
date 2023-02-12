@@ -13,20 +13,25 @@
             pack://application:,,,/Resources/Product/picture.png
         </sys:String>
     </Page.Resources>
-    <Grid>
+    <Grid Margin="0,0,0,-376">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="627*"/>
+            <RowDefinition Height="153*"/>
+            <RowDefinition Height="46*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="175"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="175"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column = "1">
+        <StackPanel Grid.Column = "1" Grid.RowSpan="3">
             <TextBlock Text="Артикул: "/>
             <TextBox Name="textArticle" Text="{Binding ProductArticleNumber}"/>
 
             <TextBlock Text="Наименование: "/>
             <TextBox Name="textTitle" Text="{Binding ProductName}"/>
-            
+
             <TextBlock Text="Категория: "/>
             <ComboBox Name="cmbCategory" Text="{Binding IDProductCategory}"/>
 
@@ -59,13 +64,12 @@
                     <Image x:Name="IMG" Width="100" Height="100" Source="{Binding ImgPath, FallbackValue={StaticResource deafualtImage}}"/>
                     <Button Name="btnEnterImage" Content="Выбрать фото" Click="btnEnterImage_Click"/>
                 </StackPanel>
-
-                <StackPanel Margin="50 0 0 0">
+                <StackPanel Width="306">
                     <TextBlock Text="Описание:"/>
-                    <TextBox Name="textDescription" Text="{Binding ProductDescription}" Height="100" Width="300" TextWrapping="Wrap"/>
+                    <TextBox x:Name="textDescription" Text="{Binding ProductDescription}" Height="100" Width="300" TextWrapping="Wrap"/>
                 </StackPanel>
             </StackPanel>
-            
+
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Name="btnDeleteProduct" Content="Удалить материал" Width="200" Click="btnDeleteProduct_Click"/>
                 <Button Name="btnSaveProduct" Content="Сохранить" Width="200" Click="btnSaveProduct_Click"/>
