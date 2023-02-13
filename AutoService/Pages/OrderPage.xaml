@@ -54,7 +54,7 @@
                                          Click="btnDeleteProduct_Click" Width="36" Height="36"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                                     <TextBlock Text="Количество:" VerticalAlignment="Center"/>
-                                    <TextBox Name="TextCountProduct" Text="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Width="50" Height="34"/>
+                                    <TextBox Name="TextCountProduct" Text="{Binding ProductQuantityInStock}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Width="50" Height="34" PreviewTextInput="TextCountProduct_PreviewTextInput"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

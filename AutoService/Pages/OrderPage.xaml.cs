@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using static AutoService.Entities.Product;
 
 namespace AutoService.Pages
 {
@@ -13,6 +15,7 @@ namespace AutoService.Pages
     /// </summary>
     public partial class OrderPage : Page
     {
+        OrderedProduct orderedProduct = new OrderedProduct();
         List<Product> productList = new List<Product>();
         public OrderPage(List<Product> products, User user)
         {
@@ -34,6 +37,14 @@ namespace AutoService.Pages
             }
         }
         
+        public int CountPoroductOrdered
+        {
+            get
+            {
+                return 1;
+            }
+        }
+
         private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
         {//TODO Исправить удаление товара из заказа
             if (MessageBox.Show("Вы уверены, что хотите удалить этот элемент?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
@@ -97,6 +108,16 @@ namespace AutoService.Pages
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void TextCountProduct_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e) //проверрка на ввод чисел в поле количества
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+        private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace AutoService.Entities
 
         public class OrderedProduct : Product
         {
-            public int CountProduct { get; set; }
+            public int CountOrderedProduct { get; set; } = 1;
         }
         
         public string Background

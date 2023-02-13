@@ -1,10 +1,11 @@
 ﻿using AutoService.Entities;
 using AutoService.Windows;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-
+using static AutoService.Entities.Product;
 
 namespace AutoService.Pages
 {
@@ -13,13 +14,11 @@ namespace AutoService.Pages
     /// </summary>
     public partial class Client : Page
     {
-
         User user = new User(); //Пустой параметр пользователя
         List<Product> Products = new List<Product>();
         public Client(User currentUser)
         {
             InitializeComponent();
-
             var product = AutoEntities.GetContext().Product.ToList(); // Обращаемся к таблице с товарами и получаем список
             LViewProduct.ItemsSource = product; // Передаём список в лист
             DataContext = this; //Используем данный класс как объект для привязки контекста
