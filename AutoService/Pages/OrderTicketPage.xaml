@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <FlowDocumentReader Grid.Row="0">
-            <FlowDocument Name="flowDocument">
+            <FlowDocument x:Name="DocViewer">
                 <BlockUIContainer>
                     <StackPanel HorizontalAlignment="Center">
                         <TextBlock Text="Дата заказа: "/>

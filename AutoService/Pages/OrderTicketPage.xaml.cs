@@ -36,7 +36,7 @@ namespace AutoService.Pages
             PrintDialog pd = new PrintDialog();
             if (pd.ShowDialog() == true)
             {
-                IDocumentPaginatorSource idp = flowDocument;
+                IDocumentPaginatorSource idp = DocViewer;
                 pd.PrintDocument(idp.DocumentPaginator, Title);
             }
         }
