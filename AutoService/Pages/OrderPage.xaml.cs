@@ -89,7 +89,7 @@ namespace AutoService.Pages
                 };
                 AutoEntities.GetContext().Order.Add(newOrder); //Передаём добавленные данные в таблицу Order
                 //TODO Нужно сразу передовать CВЯЗАННЫЕ ORDER/ORFERPRODUCT/PRODUCT в следующую активность
-                foreach(var product in productList)//Каждый созданный ранее экземпляр добавляем в базу 
+                foreach (var product in productList)//Каждый созданный ранее экземпляр добавляем в базу 
                 {
                     product.Order = newOrder;
                     AutoEntities.GetContext().OrderProduct.Add(product);
@@ -138,16 +138,11 @@ namespace AutoService.Pages
             var selected = lViewOrder.SelectedItems.Cast<OrderProduct>().ToArray();
             foreach (OrderProduct item in selected)
             {
-                //if (item.CountProduct >= item.Product.ProductQuantityInStock)
-                //{
                     productList.Remove(item);
                     item.CountProduct = item.CountProduct + 1;
                     productList.Add(item);
                     lViewOrder.ItemsSource = null;
                     lViewOrder.ItemsSource = productList;
-                //}
-                //else
-                //    MessageBox.Show("В таком количестве нет данного товара!");
             }
         }
     }

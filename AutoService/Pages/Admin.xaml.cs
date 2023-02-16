@@ -1,4 +1,6 @@
 ﻿using AutoService.Entities;
+using AutoService.Windows;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +12,7 @@ namespace AutoService.Pages
     public partial class Admin : Page
     {
         User user = new User();
+        List<Product> Products = new List<Product>();
         public Admin(User currentUser)
         {
             InitializeComponent();
@@ -104,12 +107,21 @@ namespace AutoService.Pages
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Products.Count() >= 0 && Products.IndexOf(LViewProduct.SelectedItem as Product) == -1) // Проверка на наличие повторения в списке
+            {
+                btnOrder.Visibility = Visibility.Visible;
+                Products.Add(LViewProduct.SelectedItem as Product);
+            }
+            else
+            {
+                MessageBox.Show("Такой товар уже есть в вашей карзине!", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-
+            OrderWindow order = new OrderWindow(Products, user);
+            order.ShowDialog();
         }
     }
 }

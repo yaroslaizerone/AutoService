@@ -1,7 +1,10 @@
 ﻿using AutoService.Entities;
 using Microsoft.Win32;
 using System;
+using System.Globalization;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -19,25 +22,22 @@ namespace AutoService.Pages
         {
             InitializeComponent();
 
+            cmbCategory.ItemsSource = AutoEntities.GetContext().ProductCategors.ToList();
+            cmbUnit.ItemsSource = AutoEntities.GetContext().Units.ToList();
+            cmbSupplier.ItemsSource = AutoEntities.GetContext().Manufacture.ToList();
+
             if (currentProduct != null) // Если объект переданный с прошлой страницы не пустой, то добавляем его атрибуты в поля
             {
+                
                 product = currentProduct;
-
+                cmbCategory.SelectedIndex = product.IDProductCategory - 1;
+                cmbUnit.SelectedIndex = product.IDUnit - 1;
+                cmbSupplier.SelectedIndex = product.IDManufacture - 1;
                 btnDeleteProduct.Visibility = Visibility.Visible; // Показываем кнопку удаления
                 textArticle.IsEnabled = false;// Запрещаем редактирование артикула
             }
             DataContext = product;
-            cmbCategory.ItemsSource = CategoryList;
         }
-        public string[] CategoryList =
-        {
-           "Аксессуары",
-           "Автозапчасти",
-           "Автосервис",
-           "Съёмники подшипников",
-           "Ручные инструменты",
-           "Зарядные утройства"
-        };
 
         private void btnEnterImage_Click(object sender, RoutedEventArgs e)
         {
@@ -82,6 +82,24 @@ namespace AutoService.Pages
                 MessageBox.Show(errors.ToString());
                 return;
             }
+            product.ProductArticleNumber = textArticle.Text;
+            product.ProductName = textTitle.Text;
+            product.IDProductCategory = cmbCategory.SelectedIndex + 1;
+            product.ProductQuantityInStock = Int32.Parse(textCountInStock.Text);
+            product.IDUnit = cmbUnit.SelectedIndex + 1;
+            if(textCountInPack.Text != "")
+            {
+                product.CountPack = Int32.Parse(textCountInPack.Text);
+            }
+            if(textMinCount.Text != "")
+            {
+                product.MinCount = Int32.Parse(textMinCount.Text);
+            }
+            product.IDManufacture = cmbSupplier.SelectedIndex + 1;
+            product.MaxDiscountAmount = Int32.Parse(textMaxDiscount.Text);
+            product.ProductDiscountAmount = Byte.Parse(textDiscount.Text);
+            product.ProductCost = decimal.Parse(textCost.Text, CultureInfo.InvariantCulture);
+            product.ProductDescription = textDescription.Text;
 
             if (product.ProductArticleNumber == null)
                 AutoEntities.GetContext().Product.Add(product);// Добавление объекта в БД
@@ -95,6 +113,41 @@ namespace AutoService.Pages
             {
                 MessageBox.Show(ex.Message.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); //  Вывод ошибки
             }
+        }
+
+        private void textMaxDiscount_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void textCountInStock_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void textCountInPack_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void textMinCount_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void textDiscount_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+        private void textCost_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+        private static readonly Regex _regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
         }
     }
 }

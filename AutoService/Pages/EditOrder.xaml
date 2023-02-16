@@ -19,7 +19,7 @@
             <ColumnDefinition Width="175"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column = "1" Grid.RowSpan="3">
+        <StackPanel Grid.Column = "1" Grid.RowSpan="3" PreviewTextInput="StackPanel_PreviewTextInput">
             <TextBlock Text="Состояние заказа: "/>
             <ComboBox Name="CBStatus" DisplayMemberPath="StatusOrder" SelectedValuePath="IDStatusOrder"/>
 

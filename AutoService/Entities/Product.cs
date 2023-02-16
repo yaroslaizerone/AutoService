@@ -82,5 +82,12 @@ namespace AutoService.Entities
                 return path;
             }
         }
+        public string CategoryProduct
+        {
+            get
+            {
+                return this.ProductCategors.ProductCategory.ToString();
+            }
+        }
     }
 }

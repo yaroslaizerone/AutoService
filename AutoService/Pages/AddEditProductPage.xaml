@@ -33,31 +33,31 @@
             <TextBox Name="textTitle" Text="{Binding ProductName}"/>
 
             <TextBlock Text="Категория: "/>
-            <ComboBox Name="cmbCategory" Text="{Binding IDProductCategory}"/>
+            <ComboBox Name="cmbCategory" DisplayMemberPath="ProductCategory" SelectedValuePath="IDProductCategory"/>
 
             <TextBlock Text="Количество на складе: "/>
-            <TextBox Name="textCountInStock" Text="{Binding ProductQuantityInStock}"/>
+            <TextBox Name="textCountInStock" Text="{Binding ProductQuantityInStock}" PreviewTextInput="textCountInStock_PreviewTextInput"/>
 
             <TextBlock Text="Единица измерения: "/>
-            <TextBox Name="textUnit" Text="{Binding IDUnit}"/>
+            <ComboBox Name="cmbUnit" DisplayMemberPath="Unit" SelectedValuePath="IDUnit"/>
 
             <TextBlock Text="Количество в упаковке: "/>
-            <TextBox Name="textCountInPack" Text="{Binding CountPack}"/>
+            <TextBox Name="textCountInPack" Text="{Binding CountPack}" PreviewTextInput="textCountInPack_PreviewTextInput"/>
 
             <TextBlock Text="Минимальное количество: "/>
-            <TextBox Name="textMinCount" Text="{Binding MinCount}"/>
+            <TextBox Name="textMinCount" Text="{Binding MinCount}" PreviewTextInput="textMinCount_PreviewTextInput"/>
 
             <TextBlock Text="Поставщик: "/>
-            <TextBox Name="textSupplier" Text="{Binding IDSupplier}"/>
+            <ComboBox Name="cmbSupplier" DisplayMemberPath="ManufactureName" SelectedValuePath="IDManufacture"/>
 
             <TextBlock Text="Размер максимальной скидки: "/>
-            <TextBox Name="textMaxDiscount" Text="{Binding MaxDiscountAmount}"/>
+            <TextBox Name="textMaxDiscount" Text="{Binding MaxDiscountAmount}" PreviewTextInput="textMaxDiscount_PreviewTextInput"/>
 
             <TextBlock Text="Размер Действующей скидки: "/>
-            <TextBox Name="textDiscount" Text="{Binding ProductDiscountAmount}"/>
+            <TextBox Name="textDiscount" Text="{Binding ProductDiscountAmount}"  PreviewTextInput="textDiscount_PreviewTextInput"/>
 
             <TextBlock Text="Стоимоть за единицу: "/>
-            <TextBox Name="textCost" Text="{Binding ProductCost}"/>
+            <TextBox Name="textCost" Text="{Binding ProductCost}"  PreviewTextInput="textCost_PreviewTextInput"/>
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
@@ -66,7 +66,7 @@
                 </StackPanel>
                 <StackPanel Width="306">
                     <TextBlock Text="Описание:"/>
-                    <TextBox x:Name="textDescription" Text="{Binding ProductDescription}" Height="100" Width="300" TextWrapping="Wrap"/>
+                    <TextBox x:Name="textDescription" Text="{Binding ProductDescription}" Height="100" Width="287" TextWrapping="Wrap"/>
                 </StackPanel>
             </StackPanel>
 
