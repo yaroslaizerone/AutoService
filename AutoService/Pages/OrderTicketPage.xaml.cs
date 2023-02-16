@@ -13,8 +13,8 @@ namespace AutoService.Pages
     /// </summary>
     public partial class OrderTicketPage : Page
     {
-        List<Product> productList = new List<Product>();
-        public OrderTicketPage(Order currentOrder, List<Product> products)
+        List<OrderProduct> productList = new List<OrderProduct>();
+        public OrderTicketPage(Order currentOrder, List<OrderProduct> products)
         {
             InitializeComponent();
             productList = products; // Передаём в пустой лист данные с прошлой страницы
@@ -24,10 +24,10 @@ namespace AutoService.Pages
             var result = "";
 
             foreach (var pl in productList)
-                result += (result == "" ? "" : ", ") + pl.ProductName.ToString(); //Выводим названия товаров, оформленых в заказе
+                result += (result == "" ? "" : ", ") + pl.Product.ProductName.ToString(); //Выводим названия товаров, оформленых в заказе
             textProductList.Text = result.ToString();
 
-            var total = productList.Sum(x => Convert.ToDouble(x.ProductCost) - Convert.ToDouble(x.ProductCost) * Convert.ToDouble(x.ProductDiscountAmount) / 100.00);
+            var total = productList.Sum(x => Convert.ToDouble(x.Product.ProductCost) - Convert.ToDouble(x.Product.ProductCost) * Convert.ToDouble(x.Product.ProductDiscountAmount) / 100.00);
             textCost.Text = total.ToString() + " рублей"; //Выводим итоговую стоимость заказа
         }
 

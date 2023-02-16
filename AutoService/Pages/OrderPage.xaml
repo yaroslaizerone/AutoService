@@ -34,27 +34,28 @@
                                 <ColumnDefinition Width="426"/>
                             </Grid.ColumnDefinitions>
                             <Image Width="90" Height="100" Margin="15,9,15,9" Grid.Column="0"
-                                   Stretch="Uniform" Source="{Binding ImgPath, FallbackValue={StaticResource defualtImage}}"/>
+                                   Stretch="Uniform" Source="{Binding Product.ImgPath, FallbackValue={StaticResource defualtImage}}"/>
                             
                             <StackPanel Grid.Column="1">
-                                <TextBlock Text="{Binding ProductName}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding ProductDescription}"/>
-                                <TextBlock Text="{Binding GetNameManufacture}"/>
+                                <TextBlock Text="{Binding Product.ProductName}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Product.ProductDescription}"/>
+                                <TextBlock Text="{Binding Product.GetNameManufacture}"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
-                                    <TextBlock Text="{Binding CostWithDiscount, StringFormat='\ {0} рублей'}"/>
+                                    <TextBlock Text="{Binding Product.ProductCost}" TextDecorations="Strikethrough"/>
+                                    <TextBlock Text="{Binding Product.CostWithDiscount, StringFormat='\ {0} рублей'}"/>
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Grid.Column="2" Margin="265,0,0,0">
                                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
                                     <TextBlock Text="Скидка - "/>
-                                    <TextBlock Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}"/>
+                                    <TextBlock Text="{Binding Product.ProductDiscountAmount, StringFormat='\ {0} %'}"/>
                                 </StackPanel>
                                 <Button x:Name="btnDeleteProduct" Content="X" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"
                                          Click="btnDeleteProduct_Click" Width="36" Height="36"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                                    <TextBlock Text="Количество:" VerticalAlignment="Center"/>
-                                    <TextBox Name="TextCountProduct" Text="{Binding ProductQuantityInStock}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Width="50" Height="34" PreviewTextInput="TextCountProduct_PreviewTextInput"/>
+                                    <Button x:Name="MinusProduct" Content="-" VerticalAlignment="Center" Width="42" Click="MinusProduct_Click" FontSize="36" FontWeight="Bold"/>
+                                    <TextBox Name="TextCountProduct" Text="{Binding CountProduct}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Width="50" Height="34" PreviewTextInput="TextCountProduct_PreviewTextInput"/>
+                                    <Button x:Name ="PlusProduct" Content="+" VerticalAlignment="Center" Width="42" FontSize="32" Click="PlusProduct_Click" FontWeight="Bold"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

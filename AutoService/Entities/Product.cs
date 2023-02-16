@@ -42,10 +42,6 @@ namespace AutoService.Entities
         public virtual Suppliers Suppliers { get; set; }
         public virtual Units Units { get; set; }
 
-        public class OrderedProduct : Product
-        {
-            public int CountOrderedProduct { get; set; } = 1;
-        }
         
         public string Background
         {

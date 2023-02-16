@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using static AutoService.Entities.Product;
+
 
 namespace AutoService.Pages
 {
@@ -15,13 +15,19 @@ namespace AutoService.Pages
     /// </summary>
     public partial class OrderPage : Page
     {
-        OrderedProduct orderedProduct = new OrderedProduct();
-        List<Product> productList = new List<Product>();
+        List<OrderProduct> productList = new List<OrderProduct>();
         public OrderPage(List<Product> products, User user)
         {
             InitializeComponent();
             DataContext = this; // Привязываем контекст к данному классу
-            productList = products; // Передача списка товаров в пустой лист
+
+            foreach (var product in products)
+            {
+                productList.Add(new OrderProduct {
+                    Product = product,
+                    CountProduct = 1
+                });
+            }
             lViewOrder.ItemsSource = productList; // Вывод товаров в ListView
             cmbPickupPouint.ItemsSource = AutoEntities.GetContext().PickupPoint.ToList();//Ввод пунктов выдачи в список
 
@@ -32,24 +38,17 @@ namespace AutoService.Pages
         {
             get
             {
-                var total = productList.Sum(x => Convert.ToDouble(x.ProductCost) - Convert.ToDouble(x.ProductCost) * Convert.ToDouble(x.ProductDiscountAmount / 100.00));
+                var total = productList.Sum(x => Convert.ToDouble(x.Product.ProductCost) - Convert.ToDouble(x.Product.ProductCost) * Convert.ToDouble(x.Product.ProductDiscountAmount / 100.00));
                 return total.ToString();
             }
         }
         
-        public int CountPoroductOrdered
-        {
-            get
-            {
-                return 1;
-            }
-        }
 
         private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
         {//TODO Исправить удаление товара из заказа
             if (MessageBox.Show("Вы уверены, что хотите удалить этот элемент?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                var selected = lViewOrder.SelectedItems.Cast<Product>().ToArray();
+                var selected = lViewOrder.SelectedItems.Cast<OrderProduct>().ToArray();
                 foreach (var item in selected)
                 {
                     productList.Remove(item);
@@ -66,7 +65,7 @@ namespace AutoService.Pages
             var productArticle = productList.Select(x => x.ProductArticleNumber).ToArray(); // Производим поиск товаров по артикулу, добавляя каждый отдельным элементом массива 
             Random random = new Random(); //Для случайного числа в коде получения
             var date = DateTime.Now; //Добавляем переменную, в которой хранится сегодняшняя дата
-            if (productList.Any(x => x.ProductQuantityInStock < 3))
+            if (productList.Any(x => x.Product.ProductQuantityInStock < 3))
                 date = date.AddDays(6);
             else                        //В зависимости от количества товара
                 date = date.AddDays(3); //назначется время доставки
@@ -90,16 +89,12 @@ namespace AutoService.Pages
                 };
                 AutoEntities.GetContext().Order.Add(newOrder); //Передаём добавленные данные в таблицу Order
                 //TODO Нужно сразу передовать CВЯЗАННЫЕ ORDER/ORFERPRODUCT/PRODUCT в следующую активность
-                for (int i = 0; i < productArticle.Count(); i++)  // Счётчик, который будет добавлять записи до того как не закончатся артикулы
+                foreach(var product in productList)//Каждый созданный ранее экземпляр добавляем в базу 
                 {
-                    OrderProduct newOrderProduct = new OrderProduct()
-                    {
-                        OrderID = newOrder.OrderID,
-                        ProductArticleNumber = productArticle[i],
-                        CountProduct = 1
-                    };
-                    AutoEntities.GetContext().OrderProduct.Add(newOrderProduct); //Передаём параметры для созранения в базу
+                    product.Order = newOrder;
+                    AutoEntities.GetContext().OrderProduct.Add(product);
                 }
+                
                 AutoEntities.GetContext().SaveChanges();//Сохраняем записи в БД
                 MessageBox.Show("Заказ Оформлен!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 NavigationService.Navigate(new OrderTicketPage(newOrder, productList)); //Переходим на страницу талона заказа
@@ -118,6 +113,42 @@ namespace AutoService.Pages
         private static bool IsTextAllowed(string text)
         {
             return !_regex.IsMatch(text);
+        }
+
+        private void MinusProduct_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = lViewOrder.SelectedItems.Cast<OrderProduct>().ToArray();
+            foreach (OrderProduct item in selected)
+            {
+                if (item.CountProduct >= 0)
+                {
+                    productList.Remove(item);
+                    item.CountProduct--;
+                    productList.Add(item);
+                    lViewOrder.ItemsSource = null;
+                    lViewOrder.ItemsSource = productList;
+                }
+                else
+                    MessageBox.Show("Нельзя заказать отрицательное количество товара");
+            }
+        }
+
+        private void PlusProduct_Click(object sender, RoutedEventArgs e)
+        {
+            var selected = lViewOrder.SelectedItems.Cast<OrderProduct>().ToArray();
+            foreach (OrderProduct item in selected)
+            {
+                //if (item.CountProduct >= item.Product.ProductQuantityInStock)
+                //{
+                    productList.Remove(item);
+                    item.CountProduct = item.CountProduct + 1;
+                    productList.Add(item);
+                    lViewOrder.ItemsSource = null;
+                    lViewOrder.ItemsSource = productList;
+                //}
+                //else
+                //    MessageBox.Show("В таком количестве нет данного товара!");
+            }
         }
     }
 }
