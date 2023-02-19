@@ -20,11 +20,11 @@ namespace AutoService.Pages
     /// Логика взаимодействия для SelectOrderForEdit.xaml
     /// </summary>
     public partial class SelectOrderForEdit : Page
-    {
+    { //TODO Нужно передавать, кроме списка заказов и OrderProduct чтоб выводит товары в заказе
         public SelectOrderForEdit()
         {
             InitializeComponent();
-            var OrderDB = AutoEntities.GetContext().Order.ToList(); // Обращаемся к таблице с товарами и получаем список
+            var OrderDB = AutoEntities.GetContext().Order.ToList(); // Обращаемся к таблице с заказами и получаем список
             LViewOrders.ItemsSource = OrderDB; // Передаём список в лист
             DataContext = this; //Используем данный класс как объект для привязки контекста
 

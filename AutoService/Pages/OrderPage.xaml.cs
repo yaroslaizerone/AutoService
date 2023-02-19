@@ -45,7 +45,7 @@ namespace AutoService.Pages
         
 
         private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
-        {//TODO Исправить удаление товара из заказа
+        {
             if (MessageBox.Show("Вы уверены, что хотите удалить этот элемент?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 var selected = lViewOrder.SelectedItems.Cast<OrderProduct>().ToArray();
@@ -88,10 +88,11 @@ namespace AutoService.Pages
                     ReceiptCode = random.Next(100, 1000)
                 };
                 AutoEntities.GetContext().Order.Add(newOrder); //Передаём добавленные данные в таблицу Order
-                //TODO Нужно сразу передовать CВЯЗАННЫЕ ORDER/ORFERPRODUCT/PRODUCT в следующую активность
+
                 foreach (var product in productList)//Каждый созданный ранее экземпляр добавляем в базу 
                 {
                     product.Order = newOrder;
+                    product.Product.ProductQuantityInStock -= (int)product.CountProduct;
                     AutoEntities.GetContext().OrderProduct.Add(product);
                 }
                 
@@ -138,9 +139,7 @@ namespace AutoService.Pages
             var selected = lViewOrder.SelectedItems.Cast<OrderProduct>().ToArray();
             foreach (OrderProduct item in selected)
             {
-                    productList.Remove(item);
                     item.CountProduct = item.CountProduct + 1;
-                    productList.Add(item);
                     lViewOrder.ItemsSource = null;
                     lViewOrder.ItemsSource = productList;
             }
