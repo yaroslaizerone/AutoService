@@ -64,6 +64,7 @@
                                     <TextBlock Text="{Binding ProductCost}" TextDecorations="Strikethrough"/>
                                     <TextBlock Text="{Binding CostWithDiscount, StringFormat='\ {0} рублей'}"/>
                                 </StackPanel>
+                                <TextBlock Text="{Binding ProductQuantityInStock, StringFormat= '\В наличии: {0}'}"/>
                             </StackPanel>
                             <TextBlock Grid.Column="2" Text="{Binding ProductDiscountAmount, StringFormat='\ {0} %'}" VerticalAlignment="Center"/>
                         </Grid>

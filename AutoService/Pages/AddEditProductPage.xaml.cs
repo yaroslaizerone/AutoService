@@ -24,7 +24,8 @@ namespace AutoService.Pages
 
             cmbCategory.ItemsSource = AutoEntities.GetContext().ProductCategors.ToList();
             cmbUnit.ItemsSource = AutoEntities.GetContext().Units.ToList();
-            cmbSupplier.ItemsSource = AutoEntities.GetContext().Manufacture.ToList();
+            cmbSupplier.ItemsSource= AutoEntities.GetContext().Suppliers.ToList();
+            cmbManufacture.ItemsSource = AutoEntities.GetContext().Manufacture.ToList();
 
             if (currentProduct != null) // Если объект переданный с прошлой страницы не пустой, то добавляем его атрибуты в поля
             {
@@ -63,6 +64,7 @@ namespace AutoService.Pages
                 {
                     MessageBox.Show(ex.Message.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                NavigationService.GoBack();
             }
         }
 
@@ -95,13 +97,14 @@ namespace AutoService.Pages
             {
                 product.MinCount = Int32.Parse(textMinCount.Text);
             }
-            product.IDManufacture = cmbSupplier.SelectedIndex + 1;
+            product.IDSupplier = cmbSupplier.SelectedIndex + 1;
+            product.IDManufacture = cmbManufacture.SelectedIndex + 1;
             product.MaxDiscountAmount = Int32.Parse(textMaxDiscount.Text);
             product.ProductDiscountAmount = Byte.Parse(textDiscount.Text);
             product.ProductCost = decimal.Parse(textCost.Text, CultureInfo.InvariantCulture);
             product.ProductDescription = textDescription.Text;
 
-            if (product.ProductArticleNumber == null)
+            if (product.ProductArticleNumber != null)
                 AutoEntities.GetContext().Product.Add(product);// Добавление объекта в БД
             try
             {

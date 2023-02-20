@@ -48,7 +48,10 @@
             <TextBox Name="textMinCount" Text="{Binding MinCount}" PreviewTextInput="textMinCount_PreviewTextInput"/>
 
             <TextBlock Text="Поставщик: "/>
-            <ComboBox Name="cmbSupplier" DisplayMemberPath="ManufactureName" SelectedValuePath="IDManufacture"/>
+            <ComboBox Name="cmbSupplier" DisplayMemberPath="Supplier" SelectedValuePath="IDSupplier"/>
+
+            <TextBlock Text="Производитель: "/>
+            <ComboBox Name="cmbManufacture" DisplayMemberPath="ManufactureName" SelectedValuePath="IDManufacture"/>
 
             <TextBlock Text="Размер максимальной скидки: "/>
             <TextBox Name="textMaxDiscount" Text="{Binding MaxDiscountAmount}" PreviewTextInput="textMaxDiscount_PreviewTextInput"/>
