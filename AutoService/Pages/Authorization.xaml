@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:AutoService.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="600"
-      Title="Authorization">
+      Title="Authorization" >
 
     <Grid>
         <Grid.RowDefinitions>

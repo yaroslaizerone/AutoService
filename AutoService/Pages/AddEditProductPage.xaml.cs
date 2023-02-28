@@ -17,6 +17,7 @@ namespace AutoService.Pages
     public partial class AddEditProductPage : Page
     {
         Product product = new Product();
+        Product product1 = new Product();
 
         public AddEditProductPage(Product currentProduct)
         {
@@ -24,18 +25,23 @@ namespace AutoService.Pages
 
             cmbCategory.ItemsSource = AutoEntities.GetContext().ProductCategors.ToList();
             cmbUnit.ItemsSource = AutoEntities.GetContext().Units.ToList();
-            cmbSupplier.ItemsSource= AutoEntities.GetContext().Suppliers.ToList();
+            cmbSupplier.ItemsSource = AutoEntities.GetContext().Suppliers.ToList();
             cmbManufacture.ItemsSource = AutoEntities.GetContext().Manufacture.ToList();
 
             if (currentProduct != null) // Если объект переданный с прошлой страницы не пустой, то добавляем его атрибуты в поля
             {
-                
+
                 product = currentProduct;
                 cmbCategory.SelectedIndex = product.IDProductCategory - 1;
                 cmbUnit.SelectedIndex = product.IDUnit - 1;
-                cmbSupplier.SelectedIndex = product.IDManufacture - 1;
+                cmbSupplier.SelectedIndex = product.IDSupplier - 1;
+                cmbManufacture.SelectedIndex = product.IDManufacture - 1;
                 btnDeleteProduct.Visibility = Visibility.Visible; // Показываем кнопку удаления
                 textArticle.IsEnabled = false;// Запрещаем редактирование артикула
+            }
+            else if (currentProduct == null)
+            {
+                product1 = null;
             }
             DataContext = product;
         }
@@ -48,6 +54,8 @@ namespace AutoService.Pages
             GetImageDialog.InitialDirectory = "F:\\ярослав\\коды\\AutoService\\AutoService\\Resources"; // Путь к папке ресурсов проекта
             if (GetImageDialog.ShowDialog() == true)
                 product.ProductPhoto = GetImageDialog.SafeFileName;//Добавление наименования файла в БД
+                DataContext = null;
+                DataContext = product;   
         }
 
         private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
@@ -89,11 +97,11 @@ namespace AutoService.Pages
             product.IDProductCategory = cmbCategory.SelectedIndex + 1;
             product.ProductQuantityInStock = Int32.Parse(textCountInStock.Text);
             product.IDUnit = cmbUnit.SelectedIndex + 1;
-            if(textCountInPack.Text != "")
+            if (textCountInPack.Text != "")
             {
                 product.CountPack = Int32.Parse(textCountInPack.Text);
             }
-            if(textMinCount.Text != "")
+            if (textMinCount.Text != "")
             {
                 product.MinCount = Int32.Parse(textMinCount.Text);
             }
@@ -104,7 +112,7 @@ namespace AutoService.Pages
             product.ProductCost = decimal.Parse(textCost.Text, CultureInfo.InvariantCulture);
             product.ProductDescription = textDescription.Text;
 
-            if (product.ProductArticleNumber != null)
+            if (product1 == null)
                 AutoEntities.GetContext().Product.Add(product);// Добавление объекта в БД
             try
             {

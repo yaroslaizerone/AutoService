@@ -13,7 +13,7 @@
             pack://application:,,,/Resources/Product/picture.png
         </sys:String>
     </Page.Resources>
-    <Grid Margin="0,0,0,-376">
+    <Grid Margin="0,0,0,-495">
         <Grid.RowDefinitions>
             <RowDefinition Height="627*"/>
             <RowDefinition Height="153*"/>
