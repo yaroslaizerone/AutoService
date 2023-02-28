@@ -37,7 +37,7 @@ namespace AutoService.Pages
             user = AutoEntities.GetContext().User.Where(x => x.UserLogin == login && x.UserPassword == password).FirstOrDefault(); // Параметр, хранящий в себе данные найденного пользователя
             int userСount = AutoEntities.GetContext().User.Where(x => x.UserLogin == login && x.UserPassword == password).Count(); // Поиск количества пользователей с данными параметрами
             //Проверка, на количество попыток успешного входа
-            if (userСount == 0 && textBlockCaptcha.Text != textCaptch.Text && countUnsuccessful == 4)
+            if (userСount == 0 && textBlockCaptcha.Text != textCaptch.Text && countUnsuccessful == 3)
             {
                 DelLoginAndPassword();
                 StopActive();
@@ -54,7 +54,8 @@ namespace AutoService.Pages
             {
                 GenerataCapcha();
                 DelLoginAndPassword();
-                MessageBox.Show("Пароль или логин был неверно введён!");
+                MessageBox.Show("Пароль или логин был неверно введён!" +
+                    $"\nУ вас осталось: {3-countUnsuccessful} попыток!");
             }
         }
 
