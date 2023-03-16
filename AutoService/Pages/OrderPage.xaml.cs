@@ -131,7 +131,7 @@ namespace AutoService.Pages
                 }
                 else
                     MessageBox.Show("Нельзя заказать отрицательное количество товара");
-            }
+            } 
         }
 
         private void PlusProduct_Click(object sender, RoutedEventArgs e)

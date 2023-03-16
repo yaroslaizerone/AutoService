@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoService.Windows"
         mc:Ignorable="d"
-        Title="OrderWindow" Height="600" Width="1000" Icon="/Resources/Image/icon.ico" MinHeight="600" MinWidth="1000">
+        Title="" Height="600" Width="1000" Icon="/Resources/Image/icon.ico" MinHeight="600" MinWidth="1000">
     <Grid>
         <Frame x:Name="frmOrder" NavigationUIVisibility="Hidden"/>
     </Grid>
