@@ -34,7 +34,7 @@ namespace AutoService.Pages
 
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new EditOrder(LViewOrders.SelectedItem as Order));
+            NavigationService.Navigate(new EditOrder(LViewOrders.SelectedItem as Order,null));
         }
 
         private void textSearch_SelectionChanged(object sender, RoutedEventArgs e)

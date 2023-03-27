@@ -37,8 +37,10 @@
 
             <TextBlock Text="Код получения: "/>
             <TextBox Name="DropCode" Text="{Binding ReceiptCode}"/>
-
-            <Button Name="btnSaveProduct" Content="Сохранить" Width="200" Click="btnSaveProduct_Click" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnSaveProduct" Content="Сохранить" Width="200" Click="btnSaveProduct_Click"/>
+                <Button x:Name="btnEditProductList" Content="Изменить состав заказа" Width="200" Click="btnEditProductList_Click"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

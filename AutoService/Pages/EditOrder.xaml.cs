@@ -24,12 +24,17 @@ namespace AutoService.Pages
     public partial class EditOrder : Page
     {
         Order orderClient = new Order();
+        List<OrderProduct> listproduct = new List<OrderProduct>();
 
-        public EditOrder(Order order)
+        public EditOrder(Order order, List<OrderProduct> listp)
         {
             InitializeComponent();
             
             orderClient = order;
+            if (listp != null )
+            {
+                listproduct = listp;
+            }
 
             CBStatus.ItemsSource = AutoEntities.GetContext().StatusOrders.ToList();//Ввод видов состояния заказа списком
             CBPickUp.ItemsSource = AutoEntities.GetContext().PickupPoint.ToList();//Ввод пунктов выдачи в список
@@ -50,6 +55,17 @@ namespace AutoService.Pages
                 orderClient.ReceiptCode = Int32.Parse(DropCode.Text);
                 orderClient.OrderDate = DateOfish.SelectedDate.Value;
                 orderClient.OrderDeliveryDate = DateDeliv.SelectedDate.Value;
+                if (listproduct != null)
+                {
+                    foreach (var item in listproduct)
+                    {
+                        var check = AutoEntities.GetContext().OrderProduct.Where(x => x.Order == item.Order && x.Product == item.Product);
+                        if (check == null)
+                        {
+                            AutoEntities.GetContext().OrderProduct.Add(item);
+                        }
+                    }
+                }
                 AutoEntities.GetContext().SaveChanges();
                 MessageBox.Show("Запись была изменена");
             }
@@ -67,6 +83,12 @@ namespace AutoService.Pages
         private static bool IsTextAllowed(string text)
         {
             return !_regex.IsMatch(text);
+        }
+
+        private void btnEditProductList_Click(object sender, RoutedEventArgs e)
+        {
+            listproduct = AutoEntities.GetContext().OrderProduct.Where(x => x.OrderID == orderClient.OrderID).ToList();
+            NavigationService.Navigate(new EditProductOrderList(listproduct, orderClient));
         }
     }
 }

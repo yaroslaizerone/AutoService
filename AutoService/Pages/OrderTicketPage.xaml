@@ -28,7 +28,9 @@
                         <TextBlock x:Name="textProductList"/>
 
                         <TextBlock Text="Сумма заказа: "/>
-                        <TextBlock x:Name="textCost"/>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock x:Name="textCost" TextWrapping="Wrap"/>
+                        </StackPanel>
 
                         <TextBlock Text="Пункт выдачи: "/>
                         <TextBlock x:Name="textPickupPoint"/>
