@@ -28,7 +28,7 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="149,0,0,0" Width="171">
             <TextBlock Text="Пользователь: "/>
             <TextBlock x:Name="textFullName"/>
         </StackPanel>
