@@ -25,6 +25,7 @@ namespace AutoService.Pages
     {
         List<OrderProduct> listprod = new List<OrderProduct>();
         Order clientOrder = new Order();
+        List<OrderProduct> Deletelistprod = new List<OrderProduct>();
         public EditProductOrderList(List<OrderProduct> listproduct, Order orderClient)
         {
             InitializeComponent();
@@ -71,8 +72,8 @@ namespace AutoService.Pages
                 var selected = lViewOrder.SelectedItems.Cast<OrderProduct>().ToArray();
                 foreach (var item in selected)
                 {
+                    Deletelistprod.Add(item);
                     listprod.Remove(item);
-                    AutoEntities.GetContext().OrderProduct.Remove(item);
                 }
 
                 lViewOrder.ItemsSource = null;
@@ -87,9 +88,7 @@ namespace AutoService.Pages
             {
                 if (item.CountProduct >= 0)
                 {
-                    listprod.Remove(item);
                     item.CountProduct--;
-                    listprod.Add(item);
                     lViewOrder.ItemsSource = null;
                     lViewOrder.ItemsSource = listprod;
                 }
@@ -112,6 +111,13 @@ namespace AutoService.Pages
         private void SaveChengeProductList_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Состав товаров заказа был изменён!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+            foreach (var item in Deletelistprod)
+            {
+                if (AutoEntities.GetContext().OrderProduct.Any(x=>x.Product.ProductArticleNumber == item.Product.ProductArticleNumber && x.Order.OrderID == item.Order.OrderID))
+                {
+                    AutoEntities.GetContext().OrderProduct.Remove(item);
+                }
+            }
             NavigationService.Navigate(new EditOrder(clientOrder,listprod)); //Переходим на страницу редактирования заказа
         }
 
