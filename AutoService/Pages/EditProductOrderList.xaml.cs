@@ -37,16 +37,24 @@ namespace AutoService.Pages
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            OrderProduct SelectorItem = new OrderProduct
+            OrderProduct SelectItem = new OrderProduct
             {
                 Product = LViewProduct.SelectedItem as Product,
                 CountProduct = 1,
                 Order = clientOrder
             };
-            if (listprod.Count() >= 0 && listprod.IndexOf(SelectorItem) == -1) // Проверка на наличие повторения в списке
+            int checkproduct = 0;
+            foreach (var item in listprod)
             {
-                listprod.Add(SelectorItem);
-                AutoEntities.GetContext().OrderProduct.Add(SelectorItem);
+                if(item.Product.ProductArticleNumber == SelectItem.Product.ProductArticleNumber)
+                {
+                    checkproduct++;
+                }
+            }
+            if (listprod.Count() >= 0 && checkproduct==0) // Проверка на наличие повторения в списке
+            {
+                listprod.Add(SelectItem);
+                AutoEntities.GetContext().OrderProduct.Add(SelectItem);
             }
             else
             {

@@ -15,17 +15,20 @@
     </Page.Resources>
 
 
-    <Grid Background="White" Margin="0,0,-483,0">
+    <Grid Background="White" Margin="0,0,-21,-19">
         <Grid.RowDefinitions>
-            <RowDefinition Height="67*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="191*"/>
+            <RowDefinition Height="57*"/>
+            <RowDefinition Height="166*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="662*"/>
-            <ColumnDefinition Width="613*"/>
-            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="336*"/>
+            <ColumnDefinition Width="137*"/>
+            <ColumnDefinition Width="319*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="LViewProduct" Margin="0,5,4,5" d:ItemsSource="{d:SampleData ItemCount=1}" Grid.Column="0">
+        <ListView x:Name="LViewProduct" d:ItemsSource="{d:SampleData ItemCount=1}" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Row="1">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -68,7 +71,7 @@
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
-        <ListView x:Name="lViewOrder" d:ItemsSource = "{d:SampleData ItemCount=1}" Margin="1,5,0,5" Grid.Column="1">
+        <ListView x:Name="lViewOrder" d:ItemsSource = "{d:SampleData ItemCount=1}" Margin="0,0,10,6" Grid.Row="3" Grid.ColumnSpan="3">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -78,7 +81,7 @@
                 <DataTemplate>
                     <!--Наименования в шаблоне не существуют для кода, так как как код должен понять с каким ему елементом взаимодействовать если их может нарисоваться неограниченное множество-->
                     <Border BorderBrush="Black" BorderThickness="1">
-                        <Grid Width="595">
+                        <Grid Width="768">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120"/>
                                 <ColumnDefinition/>
@@ -95,7 +98,7 @@
                                     <TextBlock Text="{Binding Product.CostWithDiscount, StringFormat='\ {0} рублей'}"/>
                                 </StackPanel>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Margin="302,1,36,0">
+                            <StackPanel Grid.Column="1" Margin="459,1,0,0">
                                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
                                     <TextBlock Text="Скидка - "/>
                                     <TextBlock Text="{Binding Product.ProductDiscountAmount, StringFormat='\ {0} %'}"/>
@@ -113,6 +116,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="SaveChengeProductList" Margin="512,4,513,4" Grid.Row="1" Content="Сохранить" Width="NaN" Click="SaveChengeProductList_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="SaveChengeProductList" Margin="3,5,4,5" Grid.Row="4" Content="Сохранить" Width="NaN" Click="SaveChengeProductList_Click" Grid.Column="1"/>
     </Grid>
 </Page>
