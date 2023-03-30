@@ -72,7 +72,9 @@ namespace AutoService.Pages
                 foreach (var item in selected)
                 {
                     listprod.Remove(item);
+                    AutoEntities.GetContext().OrderProduct.Remove(item);
                 }
+
                 lViewOrder.ItemsSource = null;
                 lViewOrder.ItemsSource = listprod;
             }
