@@ -15,20 +15,22 @@
     </Page.Resources>
 
 
-    <Grid Background="White" Margin="0,0,-21,-35">
+    <Grid Background="White" Margin="0,0,-21,-78">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="198*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="194*"/>
-            <RowDefinition Height="58*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="206*"/>
+            <RowDefinition Height="22*"/>
+            <RowDefinition Height="211*"/>
+            <RowDefinition Height="63*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="336*"/>
-            <ColumnDefinition Width="137*"/>
-            <ColumnDefinition Width="319*"/>
+            <ColumnDefinition Width="320*"/>
+            <ColumnDefinition Width="181*"/>
+            <ColumnDefinition Width="312*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="LViewProduct" d:ItemsSource="{d:SampleData ItemCount=1}" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Row="1">
+        <TextBlock Text="Список товаров заказа" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="16" Width="148"/>
+        <TextBlock Text="Список товаров" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="16" Width="104"/>
+        <ListView x:Name="LViewProduct" d:ItemsSource="{d:SampleData ItemCount=1}" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Margin="0,18,0,6">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
