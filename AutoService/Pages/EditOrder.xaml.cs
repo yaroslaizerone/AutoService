@@ -47,7 +47,8 @@ namespace AutoService.Pages
 
         private void btnSaveProduct_Click(object sender, RoutedEventArgs e)
         {
-            
+            try
+            {
                 orderClient.IDOrderStatus = CBStatus.SelectedIndex + 1;
                 orderClient.OrderPickupPoint = CBPickUp.SelectedIndex + 1;
                 orderClient.ClientFullName = ClientName.Text;
@@ -67,6 +68,11 @@ namespace AutoService.Pages
                 }
                 AutoEntities.GetContext().SaveChanges();
                 MessageBox.Show("Запись была изменена");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
            
         
